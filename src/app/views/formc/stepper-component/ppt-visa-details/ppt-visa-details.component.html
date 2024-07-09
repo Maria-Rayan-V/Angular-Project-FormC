@@ -1,0 +1,380 @@
+<div fxLayout="column" fxLayout.lt-sm="row" class="pptVisa-form">
+  <form [formGroup]="pptVisaForm">
+    <ng-template matStepLabel>outline out your name</ng-template><br />
+    <!-- <mat-form-field floatLabel="always" class="full-width" appearance="outline">
+        <mat-label>Passport Number</mat-label>
+        <input formcInputuppercase   matInput placeholder="Passport Number" formControlName="passnum" maxlength="20">
+        <mat-error *ngIf="pptVisaForm.get('passnum').hasError('required')">Required</mat-error>
+        <mat-error *ngIf="pptVisaForm.get('passnum').hasError('pattern')">Only Alphabets And Numbers Allowed</mat-error>
+      </mat-form-field> -->
+
+    <div class="container">
+      <div class="line">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="text mat-typography">Passport Details</div>
+      <div class="line">
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+    <br />
+    <!-- <h4 align="start" *ngIf="pptnumFromParent">Passport Number: <span style="color: #3873d4;">{{pptnumFromParent}}</span></h4> -->
+
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label class="{{ isPassportMandatory ? 'asterix--before' : null }}"
+          >Passport Number
+        </mat-label>
+        <mat-form-field
+          floatLabel="always"
+          appearance="outline"
+          class="full-width"
+        >
+          <input
+            [readonly]="isFromExistingAppl || isFromPendingAppl"
+            formcInputuppercase
+            matInput
+            formControlName="passnum"
+            maxlength="20"
+          />
+          <mat-error *ngIf="pptVisaForm.get('passnum').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error *ngIf="pptVisaForm.get('passnum').hasError('pattern')"
+            >Only Alphabets And Numbers Allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="{{ isPassportMandatory ? 'asterix--before' : null }}"
+          >Place of issue
+        </mat-label>
+        <mat-form-field
+          floatLabel="always"
+          class="full-width"
+          appearance="outline"
+        >
+          <input
+            formcInputuppercase
+            matInput
+            [required]="isPassportMandatory"
+            formControlName="passplace"
+            maxlength="50"
+          />
+          <mat-error *ngIf="pptVisaForm.get('passplace').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error *ngIf="pptVisaForm.get('passplace').hasError('pattern')"
+            >Only Alphabets Allowed</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="{{ isPassportMandatory ? 'asterix--before' : null }}">
+          Issued Country
+        </mat-label>
+        <mat-form-field
+          floatLabel="always"
+          class="full-width"
+          appearance="outline"
+        >
+          <mat-select
+            [required]="isPassportMandatory"
+            matInput
+            formControlName="passcoun"
+          >
+            <mat-option
+              *ngFor="let country of countries"
+              [value]="country.country_code"
+            >
+              {{ country.country_name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="pptVisaForm.get('passcoun').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="{{ isPassportMandatory ? 'asterix--before' : null }}"
+          >Date of Issue</mat-label
+        >
+        <mat-form-field
+          floatLabel="always"
+          class="full-width"
+          appearance="outline"
+          formcDateFormat
+        >
+          <input
+            formcInputuppercase
+            matInput
+            [required]="isPassportMandatory"
+            [matDatepicker]="dob"
+            (dateChange)="setdateChanged()"
+            [min]="dobFromParent"
+            [max]="pptVisaForm.get('passexpdate').value && maxDate"
+            formControlName="passdate"
+          />
+          <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+          <mat-datepicker #dob></mat-datepicker>
+          <mat-error *ngIf="pptVisaForm.get('passdate').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label class="{{ isPassportMandatory ? 'asterix--before' : null }}"
+          >Date Of Expiry
+        </mat-label>
+        <mat-form-field
+          floatLabel="always"
+          class="full-width"
+          appearance="outline"
+          formcDateFormat
+        >
+          <input
+            formcInputuppercase
+            (dateChange)="setdateChanged()"
+            [required]="isPassportMandatory"
+            matInput
+            [min]="pptVisaForm.get('passdate').value"
+            [matDatepicker]="passexpdate"
+            formControlName="passexpdate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="passexpdate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #passexpdate></mat-datepicker>
+          <mat-error *ngIf="pptVisaForm.get('passexpdate').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error *ngIf="pptVisaForm.get('passexpdate').hasError('notValid')"
+            >date validation works</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+
+    <br />
+    <div class="container">
+      <div class="line">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="text mat-typography">Visa Details</div>
+      <div class="line">
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label class="{{ isVisaMandatory ? 'asterix--before' : null }}"
+          >Visa Number
+        </mat-label>
+        <mat-form-field
+          floatLabel="always"
+          class="full-width"
+          appearance="outline"
+        >
+          <input
+            formcInputuppercase
+            matInput
+            formControlName="visanum"
+            [required]="isVisaMandatory"
+            maxlength="20"
+          />
+          <mat-error *ngIf="pptVisaForm.get('visanum').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error *ngIf="pptVisaForm.get('visanum').hasError('pattern')"
+            >Only Alphabets And Numbers Allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="{{ isVisaMandatory ? 'asterix--before' : null }}"
+          >Place Of Issue
+        </mat-label>
+        <mat-form-field
+          floatLabel="always"
+          class="full-width"
+          appearance="outline"
+        >
+          <input
+            formcInputuppercase
+            matInput
+            [required]="isVisaMandatory"
+            formControlName="visaplace"
+            maxlength="50"
+          />
+          <mat-error *ngIf="pptVisaForm.get('visaplace').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error *ngIf="pptVisaForm.get('visaplace').hasError('pattern')"
+            >Only Alphabets Allowed</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="{{ isVisaMandatory ? 'asterix--before' : null }}">
+          Issued Country
+        </mat-label>
+        <mat-form-field
+          floatLabel="always"
+          class="full-width"
+          appearance="outline"
+        >
+          <mat-select
+            [required]="isVisaMandatory"
+            matInput
+            formControlName="visacoun"
+          >
+            <mat-option
+              *ngFor="let country of countries"
+              [value]="country.country_code"
+            >
+              {{ country.country_name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="pptVisaForm.get('visacoun').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-3">
+        <mat-label class="{{ isVisaMandatory ? 'asterix--before' : null }}"
+          >Date Of Issue
+        </mat-label>
+        <mat-form-field
+          floatLabel="always"
+          class="full-width"
+          appearance="outline"
+          formcDateFormat
+        >
+          <input
+            formcInputuppercase
+            (dateChange)="setdateChanged()"
+            [required]="isVisaMandatory"
+            [max]="pptVisaForm.get('visaexpdate').value"
+            [min]="pptVisaForm.get('passdate').value"
+            matInput
+            [matDatepicker]="doi"
+            formControlName="visadate"
+          />
+          <mat-datepicker-toggle matSuffix [for]="doi"></mat-datepicker-toggle>
+          <mat-datepicker #doi></mat-datepicker>
+          <mat-error *ngIf="pptVisaForm.get('visadate').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label class="{{ isVisaMandatory ? 'asterix--before' : null }}"
+          >Date Of Expiry
+        </mat-label>
+        <mat-form-field
+          floatLabel="always"
+          class="full-width"
+          appearance="outline"
+          formcDateFormat
+        >
+          <input
+            formcInputuppercase
+            (dateChange)="setdateChanged()"
+            [required]="isVisaMandatory"
+            matInput
+            [min]="pptVisaForm.get('visadate').value"
+            [matDatepicker]="doe"
+            formControlName="visaexpdate"
+          />
+          <mat-datepicker-toggle matSuffix [for]="doe"></mat-datepicker-toggle>
+          <mat-datepicker #doe></mat-datepicker>
+          <mat-error *ngIf="pptVisaForm.get('visaexpdate').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="{{ isVisaMandatory ? 'asterix--before' : null }}"
+          >Visa Type</mat-label
+        >
+        <mat-form-field
+          floatLabel="always"
+          class="full-width"
+          appearance="outline"
+        >
+          <mat-select
+            [required]="isVisaMandatory"
+            matInput
+            formControlName="visatype"
+            (selectionChange)="onChangeVisatype($event)"
+          >
+            <mat-option
+              *ngFor="let visatype of visatype"
+              [value]="visatype.visaTypeCode"
+            >
+              {{ visatype.visaTypeDesc }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="pptVisaForm.get('visatype').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="{{ isVisaMandatory ? 'asterix--before' : null }}"
+          >Visa Subtype
+        </mat-label>
+        <mat-form-field
+          floatLabel="always"
+          class="full-width"
+          appearance="outline"
+        >
+          <mat-select
+            matInput
+            [required]="isVisaMandatory"
+            formControlName="visasubtype"
+          >
+            <mat-option
+              *ngFor="let visasubtype of visaSubtype"
+              [value]="visasubtype.purposeCode"
+            >
+              {{ visasubtype.visaSubType }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="pptVisaForm.get('visasubtype').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row" class="prevNxtbtn" fxLayoutGap="20px">
+      <div>
+        <button mat-raised-button color="primary" matStepperPrevious>
+          Prev
+        </button>
+      </div>
+      <div>
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [class.spinner]="loading"
+          [disabled]="loading"
+          (click)="postPptVisaData()"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

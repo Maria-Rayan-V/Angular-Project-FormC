@@ -1,0 +1,10 @@
+<div mat-dialog-content>
+  <button class="close" mat-icon-button color="warn" (click)="dialogClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <ngx-doc-viewer
+    [url]="fileUrl"
+    viewer="url"
+    style="height: 200vh"
+  ></ngx-doc-viewer>
+</div>

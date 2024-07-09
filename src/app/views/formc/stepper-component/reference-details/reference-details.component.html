@@ -1,0 +1,161 @@
+<div fxLayout="column" fxLayout.lt-sm="row" class="ref-form">
+  <form [formGroup]="referenceContactForm">
+    <ng-template matStepLabel>outline out your name</ng-template> <br>
+    <div class="container">
+      <div class="line">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="text mat-typography">Reference Details</div>
+      <div class="line">
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label class="asterix--before">Address</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input formcInputuppercase  matInput  formControlName="addrofrefinind" required maxlength="150">
+          <mat-error *ngIf="referenceContactForm.get('addrofrefinind').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="referenceContactForm.get('addrofrefinind').hasError('pattern')">Only Alphabets,Numbers - / ,
+            # : . () are allowed</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="asterix--before">State</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select  matInput formControlName="stateofrefinind"
+            (selectionChange)="onChangeState($event)">
+            <mat-option *ngFor="let state of states" [value]="state.stateCode">
+              {{ state.ststeName }}
+            </mat-option>
+          </mat-select>
+
+          <mat-error *ngIf="referenceContactForm.get('stateofrefinind').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="asterix--before">City </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select  matInput  formControlName="cityofrefinind">
+            <mat-option *ngFor="let district of districts" [value]="district.districtCode">
+              {{ district.districtName }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="referenceContactForm.get('cityofrefinind').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="asterix--before">Pincode</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input formcInputuppercase  matInput  formControlName="pincodeofref" required minlength="6" maxlength="6">
+          <mat-error *ngIf="referenceContactForm.get('pincodeofref').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="referenceContactForm.get('pincodeofref').hasError('pattern')">Only Numbers & should be 6 digits
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+
+
+
+
+    <br>
+    <div class="container">
+      <div class="line">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="text mat-typography">Other Details</div>
+      <div class="line">
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+    <br>
+    
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label>Mobile Number In India </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input formcInputuppercase #mblnuminind  matInput  formControlName="mblnuminind"  [required]="!referenceContactForm.value.phnnuminind " maxlength="10">
+          <mat-error *ngIf="referenceContactForm.get('mblnuminind').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="referenceContactForm.get('mblnuminind').hasError('pattern')">Only numbers allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Phone Number In India </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input formcInputuppercase #phnnuminind  matInput  formControlName="phnnuminind" [required]="!referenceContactForm.value.mblnuminind " maxlength="15">
+          <mat-error *ngIf="referenceContactForm.get('phnnuminind').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="referenceContactForm.get('phnnuminind').hasError('pattern')">Only numbers allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Mobile Number Outside India</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input formcInputuppercase #mblnum  matInput  formControlName="mblnum" [required]="!referenceContactForm.value.phnnum " maxlength="10">
+          <mat-error *ngIf="referenceContactForm.get('mblnum').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="referenceContactForm.get('mblnum').hasError('pattern')">Only numbers allowed</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Phone Number Outside India</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input formcInputuppercase #phnnum  matInput  formControlName="phnnum"  [required]="!referenceContactForm.value.mblnum"  maxlength="15">
+          <mat-error *ngIf="referenceContactForm.get('phnnum').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="referenceContactForm.get('phnnum').hasError('pattern')">Only numbers allowed</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label class="asterix--before">Employed In India </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select formControlName="employedinind">
+            <mat-option value="Y">Yes</mat-option>
+            <mat-option value="N">No</mat-option>
+
+          </mat-select>
+          <mat-error *ngIf="referenceContactForm.get('employedinind').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+     
+      <div class="col-md-3">
+        <mat-label class="asterix--before">Purpose Of Visit </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select  matInput formControlName="purposeofvisit">
+            <mat-option *ngFor="let pov of povList" [value]="pov.purposeCode">
+              {{ pov.purposeDesc }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="referenceContactForm.get('purposeofvisit').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+
+    <div fxLayout="row" class="prevNxtbtn" fxLayoutGap="20px">
+      <div>
+        <button mat-raised-button color="primary" matStepperPrevious>Prev</button>
+      </div>
+      <div> <button mat-raised-button color="primary"  [class.spinner]="loading" [disabled]="loading" (click)="postRefContactData()" >Next</button>
+
+      </div>
+    </div>
+  </form>
+
+</div>

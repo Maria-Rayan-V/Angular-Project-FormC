@@ -1,0 +1,155 @@
+<div fxLayoutAlign="center center" fxFill class="auth-div">
+  <mat-card class="mat-elevation-z0">
+    <form fxLayout="column" class="auth-form" [formGroup]="generateSummaryForm">
+      &nbsp;
+      <p>Date range should be within 30 days</p>
+      <!-- <mat-radio-group formControlName="selectedRadio">
+        <mat-radio-button [value]="'FORMCFEDDURING'"
+          >Form C datewise</mat-radio-button
+        >
+        &nbsp;&nbsp;&nbsp;
+        <mat-radio-button [value]="'BULK_PRINT'">Arrival </mat-radio-button>
+        &nbsp;&nbsp;&nbsp;
+        <mat-radio-button [value]="'DEPARTURE'">Departure </mat-radio-button
+        >&nbsp;&nbsp;&nbsp;
+        <mat-radio-button [value]="'ALL'">All </mat-radio-button
+        >&nbsp;&nbsp;&nbsp;
+        <mat-radio-button [value]="'SUBUSER'">Subuser </mat-radio-button>
+        <mat-error
+          *ngIf="generateSummaryForm.get('selectedRadio').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-radio-group> -->
+      <mat-radio-group
+        class="tp-radio-group"
+        formControlName="selectedRadio"
+        [(ngModel)]="selectedVal"
+      >
+        <mat-radio-button
+          (change)="radioChange($event)"
+          class="tp-radio-button"
+          *ngFor="let rad of radioValues"
+          [value]="rad.val"
+        >
+          {{ rad.desc }}
+        </mat-radio-button>
+        <div class="col">
+          <mat-error
+            *ngIf="
+              generateSummaryForm.get('selectedRadio').hasError('required')
+            "
+            >Required</mat-error
+          >
+        </div>
+      </mat-radio-group>
+      <!-- <p>{{ reportVal }}</p>
+      <p>{{ selectedRadVal }}</p> -->
+      <mat-label>From</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="fromdate"
+          formControlName="from_date"
+          [max]="maxDate"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="fromdate"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #fromdate></mat-datepicker>
+        <mat-error
+          *ngIf="generateSummaryForm.get('from_date').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-label>To</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="todate"
+          formControlName="to_date"
+          [max]="generateSummaryForm.get('from_date').value && maxDate"
+          [min]="generateSummaryForm.get('from_date').value"
+        />
+        <mat-datepicker-toggle matSuffix [for]="todate"></mat-datepicker-toggle>
+        <mat-datepicker #todate></mat-datepicker>
+        <mat-error
+          *ngIf="generateSummaryForm.get('to_date').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-label
+        *ngIf="
+          this.generateSummaryForm.controls['selectedRadio'].value == 'SUBUSER'
+        "
+        class="asterix--before"
+      >
+        Userid
+      </mat-label>
+      <mat-form-field
+        *ngIf="
+          this.generateSummaryForm.controls['selectedRadio'].value == 'SUBUSER'
+        "
+        floatLabel="always"
+        appearance="outline"
+      >
+        <mat-select matInput formControlName="entered_by">
+          <mat-option *ngFor="let subuser of subusers" [value]="subuser">
+            {{ subuser }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="generateSummaryForm.get('entered_by').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+
+      <div class="row" *ngIf="reportVal != 'SUBUSER'">
+        <div class="col-md-6" align="end">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            (click)="postSummaryData('')"
+          >
+            Summary
+          </button>
+        </div>
+        <div class="col-md-6" *ngIf="reportVal == 'FORMCFEDDURING'">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            (click)="postSummaryData('BULK_PRINT')"
+          >
+            Bulk Print
+          </button>
+        </div>
+      </div>
+      <div class="row" *ngIf="reportVal == 'SUBUSER'">
+        <div class="col-md-6" align="end">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            (click)="postSubuserSummaryData('GENERATE_SUBUSER')"
+          >
+            Summary
+          </button>
+        </div>
+        <div class="col-md-6">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            (click)="postSubuserSummaryData('BULK_PRINT_SUBUSER')"
+          >
+            Bulk Print
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

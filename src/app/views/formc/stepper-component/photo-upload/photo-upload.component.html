@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="card" style="padding: 2%">
+    <div class="card-header"></div>
+    <div class="card-body">
+      <div class="row">
+        <br />
+        <div class="col-md-6">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="checkPermissions()"
+          >
+            Start Camera
+          </button>
+          <p *ngIf="status">{{ status }}</p>
+        </div>
+        <div class="col-md-6">
+          <input
+            type="file"
+            mat-raised-button
+            color="primary"
+            id="imageUpload"
+            accept=".png, .jpg, .jpeg"
+            #fileInput
+            (change)="fileChangeEvent($event)"
+          />
+        </div>
+        <br /><br />
+        <div *ngIf="stream" class="col-md-6">
+          <!-- web cam image will be shown here -->
+          <webcam
+            [height]="400"
+            [width]="400"
+            [trigger]="$trigger"
+            (imageCapture)="snapshot($event)"
+            [imageQuality]="1"
+          ></webcam>
+          <button mat-raised-button color="primary" (click)="captureImage()">
+            {{ btnLabel }}
+          </button>
+        </div>
+        <div
+          *ngIf="
+            imageUrlToCropper || imageChangedEvent || croppedImage.length > 27
+          "
+          class="row"
+          style="margin-top: 15px"
+        >
+          <div class="text-center col-md-8">
+            <image-cropper
+              [imageChangedEvent]="imageChangedEvent"
+              [imageURL]="imageUrlToCropper"
+              [cropperStaticHeight]="250"
+              [cropperStaticWidth]="250"
+              [maintainAspectRatio]="false"
+              [aspectRatio]="4 / 4"
+              [resizeToWidth]="256"
+              format="jpeg"
+              (imageCropped)="imageCropped($event)"
+              (imageLoaded)="imageLoaded()"
+              (cropperReady)="cropperReady()"
+              (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+          </div>
+          <div class="text-center col-md-4">
+            Image Preview <img [src]="croppedImage" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="prevNxtbtn" fxLayout="row" fxLayoutGap="20px">
+    <div>
+      <button mat-raised-button color="primary" matStepperPrevious>Prev</button>
+    </div>
+    <div>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [class.spinner]="loading"
+        [disabled]="loading"
+        (click)="uploadPhoto()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+  <br />
+</div>

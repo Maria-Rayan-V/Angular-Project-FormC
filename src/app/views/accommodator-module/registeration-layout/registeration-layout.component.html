@@ -1,0 +1,21 @@
+<mat-toolbar>
+ <mat-toolbar-row>
+   
+  <span fxFlex style="font-size: 35px; text-align: center
+  ;color: white;"> Form C</span>
+  <span style="margin-left: 45%;"  style="font-size: 16px;text-align: center;color: white;"> {{userName|uppercase}}</span>
+ </mat-toolbar-row>
+
+    <mat-toolbar-row>
+      <span class="navHeader" style="margin-left: 40%;">Accommodator Registration</span>
+     
+        <mat-icon style="color:azure" (click)="jwtAuth.signout()">exit_to_app</mat-icon>
+      
+    
+    </mat-toolbar-row>
+      
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+  <div class="footer" #footer>
+  
+  </div>

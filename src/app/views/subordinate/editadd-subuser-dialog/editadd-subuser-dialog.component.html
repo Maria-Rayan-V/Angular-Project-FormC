@@ -1,0 +1,245 @@
+<mat-dialog-content style="height: 100%">
+  <button class="close" mat-icon-button color="warn" (click)="closeDialog()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-toolbar mat-dialog-title> Add/ Edit User </mat-toolbar>
+  <div class="container">
+    <form [formGroup]="addSubuserForm">
+      <div class="row">
+        <div class="col -md-6">
+          <mat-label class="asterix--before">Userid</mat-label>
+          <mat-form-field
+            floatLabel="always"
+            appearance="standard"
+            class="full-width"
+          >
+            <input
+              matTooltip="Minimum 8
+            charecters, Should contain 1 alphabet and 1 number"
+              matTooltipPosition="left"
+              [readonly]="isFromEdit"
+              (blur)="isFromEdit ? null : checkValidUserForRegn()"
+              (input)="onUsernameChange()"
+              matInput
+              formcInputuppercase
+              formControlName="userid"
+              maxlength="50"
+            />
+            <mat-error
+              *ngIf="
+                addSubuserForm.get('userid').hasError('required') &&
+                addSubuserForm.get('userid').touched
+              "
+              >Required</mat-error
+            >
+            <mat-error
+              *ngIf="addSubuserForm.get('userid').hasError('pattern')"
+            ></mat-error>
+          </mat-form-field>
+          <div *ngIf="useridAvailable == true">
+            <p style="color: green; font-size: large">Userid available</p>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="isFromEdit == false">
+          <mat-label class="asterix--before">Password</mat-label>
+          <mat-form-field
+            floatLabel="always"
+            appearance="standard"
+            class="full-width"
+          >
+            <input
+              type="password"
+              matInput
+              formcInputuppercase
+              formControlName="password"
+              maxlength="150"
+            />
+            <mat-error
+              *ngIf="
+                addSubuserForm.get('password').hasError('required') &&
+                addSubuserForm.get('password').touched
+              "
+              >Required</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-label class="asterix--before">Username</mat-label>
+          <mat-form-field
+            floatLabel="always"
+            appearance="standard"
+            class="full-width"
+          >
+            <input
+              matInput
+              [readonly]="isFromEdit"
+              formcInputuppercase
+              formControlName="user_name"
+              maxlength="50"
+            />
+            <mat-error
+              *ngIf="
+                addSubuserForm.get('user_name').hasError('required') &&
+                addSubuserForm.get('user_name').touched
+              "
+              >Required</mat-error
+            >
+            <mat-error
+              *ngIf="addSubuserForm.get('user_name').hasError('pattern')"
+              >Only alphabets and space allowed
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-label>Gender</mat-label>
+          <mat-form-field
+            [ngClass]="{ 'readonly-wrapper': isFromEdit }"
+            floatLabel="always"
+            appearance="standard"
+          >
+            <mat-select
+              [ngClass]="{ 'readonly-block': isFromEdit }"
+              [disabled]="isFromEdit"
+              formControlName="gender"
+            >
+              <mat-option value="F">Female</mat-option>
+              <mat-option value="M">Male</mat-option>
+              <mat-option value="X">Transgender</mat-option>
+            </mat-select>
+            <mat-error *ngIf="addSubuserForm.get('gender').hasError('required')"
+              >Required</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-label class="asterix--before">Designation</mat-label>
+          <mat-form-field
+            floatLabel="always"
+            appearance="standard"
+            class="full-width"
+          >
+            <input
+              matInput
+              formcInputuppercase
+              [readonly]="isFromEdit"
+              formControlName="designation"
+              maxlength="50"
+            />
+            <mat-error
+              *ngIf="addSubuserForm.get('designation').hasError('required')"
+              >Required</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-label class="asterix--before">Email Id</mat-label>
+          <mat-form-field
+            floatLabel="always"
+            appearance="standard"
+            class="full-width"
+          >
+            <input
+              matInput
+              [readonly]="isFromEdit"
+              formControlName="e_mail_id"
+              maxlength="50"
+            />
+            <mat-error
+              *ngIf="
+                addSubuserForm.get('e_mail_id').hasError('required') &&
+                addSubuserForm.get('e_mail_id').touched
+              "
+              >Required</mat-error
+            >
+            <mat-error
+              *ngIf="
+                addSubuserForm.get('e_mail_id').hasError('pattern') &&
+                addSubuserForm.get('e_mail_id').touched
+              "
+              >Enter valid email id</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-label>Phone Number </mat-label>
+          <mat-form-field
+            floatLabel="always"
+            appearance="standard"
+            class="full-width"
+          >
+            <input
+              [readonly]="isFromEdit"
+              oninput="this.value = this.value.toUpperCase()"
+              matInput
+              formControlName="phone_no"
+              maxlength="50"
+            />
+            <mat-error
+              *ngIf="addSubuserForm.get('phone_no').hasError('required')"
+              >Required</mat-error
+            >
+            <mat-error
+              *ngIf="addSubuserForm.get('phone_no').hasError('pattern')"
+              >Only numbers allowed
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-label>Nationality</mat-label>
+          <mat-form-field
+            [ngClass]="{ 'readonly-wrapper': isFromEdit }"
+            floatLabel="always"
+            appearance="standard"
+          >
+            <mat-select
+              [ngClass]="{ 'readonly-block': isFromEdit }"
+              [disabled]="isFromEdit"
+              formControlName="nationality"
+            >
+              <mat-option
+                *ngFor="let country of countries"
+                [value]="country.country_code"
+              >
+                {{ country.country_name }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="addSubuserForm.get('nationality').hasError('required')"
+              >Required</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-label>Status</mat-label>
+          <mat-form-field floatLabel="always" appearance="standard">
+            <mat-select formControlName="active">
+              <mat-option value="Y">Yes</mat-option>
+              <mat-option value="N">No</mat-option>
+            </mat-select>
+            <mat-error *ngIf="addSubuserForm.get('active').hasError('required')"
+              >Required</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="div" align="end">
+        <button
+          color="primary"
+          mat-raised-button
+          (click)="isFromEdit ? updateSubUserDetails() : postSubUserDetails()"
+        >
+          {{ isFromEdit ? "Update" : "Add" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>

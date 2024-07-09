@@ -1,0 +1,227 @@
+<body
+  class="container-fluid"
+  style="
+    background: url(assets/FormCImages/bg.jpg) no-repeat center fixed;
+    background-size: cover;
+  "
+>
+  <br /><br />
+  <div class="text-center">
+    <img src="assets/FormCImages/boi_logo.png" class="mt-1" />
+  </div>
+  <br /><br />
+  <div class="row justify-content-center">
+    <div class="col-sm-5">
+      <form>
+        <div class="login">
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="px-5 py-4">
+                <h4>Form-C</h4>
+                <div align="center">
+                  <img src="assets/FormCImages/login.png" />
+                </div>
+
+                <form [formGroup]="signinForm" class="signup4-form">
+                  <!-- <mat-form-field class="full-width" appearance="outline">
+                              <mat-label>Username</mat-label>
+                              <input
+                                matInput
+                                formControlName="username"
+                                type="text"
+                                name="username"
+                                placeholder="Username"
+                              />
+                            </mat-form-field> -->
+                  <mat-label>Username</mat-label>
+
+                  <input
+                    (blur)="formCSignin()"
+                    formControlName="username"
+                    (keypress)="onUsernameChange()"
+                    class="form-control"
+                  />
+
+                  <mat-label>Password</mat-label>
+                  <div class="row">
+                    <div class="col-md-10">
+                      <input
+                        class="form-control"
+                        formControlName="password"
+                        [type]="hide ? 'password' : 'text'"
+                        placeholder="********"
+                      />
+                    </div>
+                    <div class="col-md-2">
+                      <button
+                        mat-icon-button
+                        matSuffix
+                        (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide"
+                      >
+                        <mat-icon>{{
+                          hide ? "visibility_off" : "visibility"
+                        }}</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+
+                  <mat-label *ngIf="previewCaptcha != null">Captcha</mat-label>
+                  <input
+                    *ngIf="previewCaptcha != null"
+                    oninput="this.value = this.value.toUpperCase()"
+                    class="form-control"
+                    formControlName="captcha"
+                    type="text"
+                    name="captcha"
+                  />
+
+                  <br />
+                  <div class="row" *ngIf="previewCaptcha != null">
+                    <div class="col-md-6"><img [src]="previewCaptcha" /></div>
+                    <div class="col-md-6">
+                      <button
+                        (click)="refreshFormCCaptcha()"
+                        mat-icon-button
+                        matTooltip="Refresh Captcha"
+                        color="primary"
+                      >
+                        <mat-icon>refresh</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- <img [src]="previewCaptcha" height="50" width="150"  *ngIf="previewCaptcha" align="start">
+
+                          <br>
+                        <mat-label>Captcha</mat-label>
+
+
+                                <input *ngIf="previewCaptcha"
+                                class="form-control"
+                                  formControlName="captcha"
+                                  type="text"
+                                  name="captcha"
+                                  placeholder="captcha"
+                                /> -->
+
+                  <!--
+                            <div
+                              fxLayout="row wrap"
+                              fxLayoutAlign="start center"
+                              style="margin-top: 20px;"
+                            >
+                              <button-loading [loading]="loading" loadingText="Signing in..." class="mr-16" color="primary"
+                                >Sign in</button-loading
+                              >
+                              <span class="px-16">or</span>
+                              <a
+                                class="font-weight-bold mat-color-primary"
+                                routerLink="/sessions/signup"
+                                >Sign Up</a
+                              >
+                            </div> -->
+
+                  <!-- <div fxLayout="row wrap" fxLayoutAlign="space-between center" style="margin-top: 20px">
+                              <span>or connect with </span>
+                              <div>
+                                icons goes here
+                              </div>
+                            </div> -->
+                </form>
+                <!-- <label>Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="Enter Username">
+                            <label>Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter Password">
+                            <label>Captcha Entry</label>
+                            <div class="captcha">
+                                <input id="captcha" type="text" class="form-control" name="captcha" placeholder="Captcha Value">
+                                <img src="/assets/FormCImages/captcha.png"/>
+                                <div class="clearfix"></div>
+                            </div>                         -->
+                <!-- <button-loading (click)="formCAuth()"   [loading]="loading" loadingText="Signing in..." class="mr-16" color="primary"
+                            >Sign in</button-loading
+                          > -->
+                <!-- <div class="d-grid">
+                                <a href="index.html" class="btn btn-main" role="button" (click)="formCAuth()"  loadingText="Signing in..." >Sign In</a>
+                            </div> -->
+                <!-- (click)="usrCode == '4' ? adminAuth() : formCAuth()" -->
+                <div class="row">
+                  <div class="col-md-3"></div>
+
+                  <div class="col-md-3">
+                    <button
+                      mat-raised-button
+                      (click)="usrCode == '4' ? adminAuth() : formCAuth()"
+                      loadingText="Signing in..."
+                      class="d-grid btn btn-main"
+                    >
+                      Sign in
+                    </button>
+                  </div>
+                  <div class="col-md-2"></div>
+                  <div class="col-md-3">
+                    <!-- <button mat-button (click)="navigateToSignUp()"    loadingText="Signing in..."
+      >Sign up</button -->
+                    <span>
+                      <button
+                        mat-raised-button
+                        class="d-grid btn btn-main"
+                        [matMenuTriggerFor]="menu"
+                        #menuTrigger="matMenuTrigger"
+                        (mouseover)="menuTrigger.openMenu()"
+                      >
+                        <p>Sign Up</p>
+                      </button>
+                      <mat-menu #menu="matMenu" [overlapTrigger]="false">
+                        <span (mouseleave)="menuTrigger.closeMenu()">
+                          <button mat-menu-item (click)="navigateToSignUp()">
+                            <span>Registration</span>
+                          </button>
+                          <button mat-menu-item (click)="navigateToIHRegn()">
+                            <span>Registration For Individual House</span>
+                          </button>
+                        </span>
+                      </mat-menu>
+                    </span>
+                  </div>
+                </div>
+                <!-- <div class="row">
+                            <div class="col-md-8"><br></div>
+                            <div class="col-md-4">
+
+                                 <p (click)="navigateToIHRegn()" class="clikable-text" >&emsp;Sign up (Individual House)<p>
+
+                            </div>
+                          </div> -->
+              </div>
+              <button (click)="navToForPswd()" mat-button color="primary">
+                Forgot Password ?
+              </button>
+            </div>
+            <div
+              class="col-sm-4"
+              style="
+                background: url(assets/FormCImages/pattern.png) center no-repeat;
+                text-align: center;
+                background-size: cover;
+              "
+            >
+              <span><br /> </span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <footer>
+    <a href="https://www.digitalindia.gov.in/"
+      ><img src="assets/FormCImages/DI.png" /></a
+    ><a href="https://www.nic.in/"><img src="assets/FormCImages/nic.png" /></a
+    ><br /><br />
+    Copyright © of Ministry of Home Affairs, Government of India, All Right
+    Reserverd.<br />
+    Developed and Maintained by National Informatics Centre
+  </footer>
+</body>

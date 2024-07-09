@@ -1,0 +1,32 @@
+table, th, td {
+    border: 1px solid black;
+    width: 500px;
+   
+   }
+
+  table{
+    box-align: center;
+   width:80%;
+
+     margin-top: 2%;
+  
+     margin-left: 10%;
+  
+     // align-content: center;
+  }
+  h1{
+     font-size: 20px;
+     font-weight: 900;
+  }
+  .mat-header-cell {
+   color: black;
+   font-size: 15px;
+   font-weight: 500;
+}
+.mat-row:nth-child(odd){
+ background-color: #DCDCDC;
+}
+     
+.mat-row:nth-child(even){
+ background-color: white;
+}

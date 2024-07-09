@@ -1,0 +1,44 @@
+<div mat-dialog-content>
+    <button class="close" mat-icon-button color="warn" (click)="closedialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+        <table>
+         
+          <tr>  
+              <th> Userid: </th>  
+              <td>  {{subUserDts.userid}} </td>  
+          </tr>  
+          <tr>  
+              <th> username: </th>  
+              <td> {{subUserDts.user_name}} </td>  
+          </tr>  
+       
+          <tr>  
+              <th> Email:  </th>  
+              <td>  {{subUserDts.e_mail_id}} </td>  
+          </tr>  
+          <tr>  
+            <th> Phone:  </th>  
+            <td>  {{subUserDts.phone_no}} </td>  
+        </tr>  
+        <tr>  
+          <th> Designation:   </th>  
+          <td>  {{subUserDts.designation}} </td>  
+      </tr>  
+        </table>
+        <br><br>
+     <!-- <div *ngIf="subUserDts" class="col">
+     <p>Name: {{subUserDts.given_name}}{{subUserDts.surname}}</p>
+     <p>Nationality: {{subUserDts.nationality_desc}}</p>
+     <p>Passport Number: {{subUserDts.passnum}</p>
+     </div> -->
+      <p style="font-size: larger;">Do you want to delete the record ?</p>
+      
+    </div>
+    <div mat-dialog-actions align="end">
+  
+      <button mat-raised-button color="primary" (click)="deleteRecord()" >Yes</button>  &nbsp;&nbsp;&nbsp;&nbsp;
+      <button mat-raised-button color="warn" (click)="closedialog()">No</button>
+    </div>
+  
+   

@@ -1,0 +1,62 @@
+.photoUploadField {
+  margin: auto;
+  width: 50%;
+  border: 0px solid #3F51B5;
+  padding: 10px;
+  text-align: center;
+}
+
+.mat-calendar-controls .mat-calendar-period-button {
+  display: none;
+}
+
+mat-year-view .mat-calendar-body-label {
+  display: none !important;
+}
+
+.example-month-picker .mat-calendar-period-button {
+  pointer-events: none;
+}
+
+.example-month-picker .mat-calendar-arrow {
+  display: none;
+}
+
+
+
+mat-label {
+  font-size: 15px;
+
+  letter-spacing: 0vmax;
+}
+mat-form-filed {
+  display: inline;
+}
+
+.radio-class {
+  width: 300px;
+}
+
+.personal-form {
+  padding: 2%;
+  background-color: rgb(242, 242, 242);
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: white;
+  border-radius: 5px;
+
+}
+
+::ng-deep .mat-form-field-flex>.mat-form-field-infix {
+  padding: 0.5em 0px !important;
+}
+
+
+.readonly-wrapper {
+  cursor: not-allowed;
+}
+
+.readonly-wrapper .readonly-block {
+  pointer-events: none;
+}

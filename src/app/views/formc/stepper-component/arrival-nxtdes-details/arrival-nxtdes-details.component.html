@@ -1,0 +1,200 @@
+<div fxLayout="column" fxLayout.lt-sm="row" class="arriNxt-form">
+  <form [formGroup]="arrivalNxtdesForm" >
+    <ng-template matStepLabel>outline out your name</ng-template>
+    
+    <div class="container">
+      <div class="line">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="text mat-typography">Arrival Details</div>
+      <div class="line">
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label class="{{isArrivalMandatory ? 'asterix--before' : null}}">Arrived From Place </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+          <input matInput formcInputuppercase [required]="isArrivalMandatory"   maxlength="50" formControlName="arriplace" >
+          <mat-error *ngIf="arrivalNxtdesForm.get('arriplace').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="arrivalNxtdesForm.get('arriplace').hasError('pattern')">Only Alphabets Allowed</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="{{isArrivalMandatory ? 'asterix--before' : null}}">Arrived From City </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+          <input matInput [required]="isArrivalMandatory" formcInputuppercase  formControlName="arricit" >
+          <mat-error *ngIf="arrivalNxtdesForm.get('arricit').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="arrivalNxtdesForm.get('arricit').hasError('pattern')">Only Alphabets Allowed</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="{{isArrivalMandatory ? 'asterix--before' : null}}">Arrived From Country </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+          <mat-select matInput [required]="isArrivalMandatory"  formControlName="arricoun">
+            <mat-option *ngFor="let country of countries" [value]="country.country_code">
+              {{ country.country_name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="arrivalNxtdesForm.get('arricoun').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="{{isArrivalMandatory ? 'asterix--before' : null}}">Date Of Arrival In India </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width" formcDateFormat>
+          <input formcInputuppercase readonly [max]="maxDate" [required]="isArrivalMandatory" (dateChange)="setdateChanged()" matInput  [matDatepicker]="doa" formControlName="arridateind" >
+          <mat-datepicker-toggle matSuffix [for]="doa"></mat-datepicker-toggle>
+          <mat-datepicker #doa></mat-datepicker>
+          <mat-error *ngIf="arrivalNxtdesForm.get('arridateind').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label class="{{isArrivalMandatory ? 'asterix--before' : null}}">Date Of Arrival In Hotel </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width" formcDateFormat>
+          <input formcInputuppercase readonly [required]="isArrivalMandatory" [max]="maxDate" (dateChange)="setdateChanged()" matInput  [matDatepicker]="arridatehotel" formControlName="arridatehotel" >
+          <mat-datepicker-toggle matSuffix [for]="arridatehotel"></mat-datepicker-toggle>
+          <mat-datepicker #arridatehotel ></mat-datepicker>
+          <mat-error *ngIf="arrivalNxtdesForm.get('arridatehotel').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="{{isArrivalMandatory ? 'asterix--before' : null}}">Time Of Arrival In Hotel</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+          <input formcInputuppercase matInput [required]="isArrivalMandatory"    [format]="24" [ngxMatTimepicker]="picker"  formControlName="arritimehotel" mode="24h"
+            name="time" (timeChange)="timeChangeHandler($event)">
+          <ngx-mat-timepicker  #picker></ngx-mat-timepicker>
+              </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="{{isArrivalMandatory ? 'asterix--before' : null}}">Duration Of Stay (In days) </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+          <input formcInputuppercase matInput [required]="isArrivalMandatory"  formControlName="durationofstay">
+          <mat-error *ngIf="arrivalNxtdesForm.get('durationofstay').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="arrivalNxtdesForm.get('durationofstay').hasError('pattern')">Only Numbers
+            Allowed</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+
+
+    <!-- <mat-form-field  floatLabel="always" appearance="outline" class="full-width" > 
+        <mat-label>Time Of Arrival In Hotel</mat-label> -->
+
+    <!-- The timepicker input -->
+    <!-- <input matInput  matTimepicker  placeholder="Time" formControlName="arritimehotel" id="timepicker-example" mode="24h"
+          name="time" (timeChange)="timeChangeHandler($event)" (invalidInput)="invalidInputHandler()"> -->
+    <!-- An icon for the timepicker input that will open the timepicker dialog when clicked -->
+    <!-- <mat-error *ngIf="arrivalNxtdesForm.get('arritimehotel').hasError('required')">Required</mat-error>
+      </mat-form-field> -->
+
+    <br>
+    <div class="container">
+      <div class="line">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="text mat-typography">Next Destination Details</div>
+      <div class="line">
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label class='asterix--before'>Next Destination </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+          <mat-select formControlName="nextdestcounflag" >
+            <mat-option value="I">Inside India</mat-option>
+            <mat-option value="O">Outside India</mat-option>
+          </mat-select>
+          <mat-error *ngIf="arrivalNxtdesForm.get('nextdestcounflag').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label *ngIf="showOutsideInd" class='asterix--before'> Country </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width" *ngIf="showOutsideInd">
+
+          <mat-select matInput  formControlName="nextdestcounoutind">
+            <mat-option *ngFor="let country of countries" [value]="country.country_code">
+              {{ country.country_name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="arrivalNxtdesForm.get('nextdestcounoutind').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label *ngIf="showOutsideInd" class='asterix--before'> City </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width" *ngIf="showOutsideInd">
+
+          <input matInput formcInputuppercase  formControlName="nextdestcityoutind" >
+          <mat-error *ngIf="arrivalNxtdesForm.get('nextdestcityoutind').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label *ngIf="showOutsideInd" class='asterix--before'> Place </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width" *ngIf="showOutsideInd" >
+
+          <input matInput formcInputuppercase   formControlName="nextdestplaceoutind">
+          <mat-error *ngIf="arrivalNxtdesForm.get('nextdestplaceoutind').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="arrivalNxtdesForm.get('nextdestplaceoutind').hasError('pattern')">Only Alphabets Allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+     
+    
+      <div class="col-md-3">
+        <mat-label *ngIf="showInsideInd" class='asterix--before'> State </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width" *ngIf="showInsideInd">
+          <mat-select matInput  formControlName="nextdeststateinind"
+            (selectionChange)="onChangeState($event)">
+            <mat-option *ngFor="let state of states" [value]="state.stateCode">
+              {{ state.ststeName }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="arrivalNxtdesForm.get('nextdeststateinind').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label *ngIf="showInsideInd" class='asterix--before'> City </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width" *ngIf="showInsideInd">
+
+          <mat-select matInput  formControlName="nextdestdistinind" >
+            <mat-option *ngFor="let district of districts" [value]="district.districtCode">
+              {{ district.districtName }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="arrivalNxtdesForm.get('nextdestdistinind').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label *ngIf="showInsideInd" class='asterix--before'> Place </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width" *ngIf="showInsideInd">
+          <input matInput formcInputuppercase  formControlName="nextdestplaceinind" >
+          <mat-error *ngIf="arrivalNxtdesForm.get('nextdestplaceinind').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="arrivalNxtdesForm.get('nextdestplaceinind').hasError('pattern')">Only Alphabets Allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <div fxLayout="row" class="prevNxtbtn" fxLayoutGap="20px">
+      <div>
+        <button mat-raised-button color="primary" matStepperPrevious>Prev</button>
+      </div>
+      <div> <button type="submit" mat-raised-button color="primary"  [class.spinner]="loading" [disabled]="loading" (click)="postArrivalNxtdesData()" >Next</button>
+
+      </div>
+    </div>
+  </form>
+
+</div>

@@ -1,0 +1,356 @@
+<div class="row justify-content-center">
+  <form>
+    <div class="login">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="px-5 py-4">
+            <div class="text-center">
+              <!-- <h4 >Form C</h4> -->
+              <!-- <img src="assets/FormCImages/boi_logo.png" class="mt-4" /> -->
+            </div>
+            <br />
+
+            <h4>User Registration</h4>
+            <br />
+
+            <form [formGroup]="userRegnForm" class="signup4-form">
+              <mat-label class="asterix--before">UserId </mat-label>
+              <input
+                (blur)="checkValidUserForRegn()"
+                formControlName="userId"
+                (input)="onUsernameChange()"
+                class="form-control"
+                minlength="8"
+                maxlength="20"
+              />
+              <mat-error
+                *ngIf="
+                  userRegnForm.get('userId').hasError('required') &&
+                  userRegnForm.get('userId').touched
+                "
+                >Required</mat-error
+              >
+              <mat-error *ngIf="userRegnForm.get('userId').hasError('pattern')"
+                >Minimum 8 characters, Should contain 1 alphabet and 1
+                number</mat-error
+              >
+              <br />
+              <div *ngIf="useridAvailable == true">
+                <p style="color: green; font-size: large">Userid available</p>
+              </div>
+
+              <mat-label class="asterix--before">Username </mat-label>
+              <input
+                formcInputuppercase
+                formControlName="userName"
+                class="form-control"
+              />
+              <mat-error
+                *ngIf="userRegnForm.get('userName').hasError('pattern')"
+                >Only alphabets and space allowed</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  userRegnForm.get('userName').hasError('required') &&
+                  userRegnForm.get('userName').touched
+                "
+                >Required</mat-error
+              >
+              <br />
+              <mat-label class="asterix--before">Password </mat-label>
+              <div class="row">
+                <div class="col-md-10">
+                  <input
+                    class="form-control"
+                    formControlName="password"
+                    [type]="hide ? 'password' : 'text'"
+                    placeholder="********"
+                  />
+                </div>
+                <div class="col-md-2">
+                  <button
+                    mat-icon-button
+                    matSuffix
+                    (click)="hide = !hide"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide"
+                  >
+                    <mat-icon>{{
+                      hide ? "visibility_off" : "visibility"
+                    }}</mat-icon>
+                  </button>
+                </div>
+              </div>
+
+              <mat-error
+                *ngIf="
+                  userRegnForm.get('password').hasError('required') &&
+                  userRegnForm.get('password').touched
+                "
+                >Required</mat-error
+              >
+              <br />
+              <mat-label class="asterix--before">Confirm Password </mat-label>
+              <div class="row">
+                <div class="col-md-10">
+                  <input
+                    class="form-control"
+                    (blur)="checkPswdCnfrmPswdSame()"
+                    formControlName="confirmPassword"
+                    [type]="cnfrmpswdHide ? 'password' : 'text'"
+                    placeholder="********"
+                  />
+                </div>
+                <div class="col-md-2">
+                  <button
+                    mat-icon-button
+                    matSuffix
+                    (click)="cnfrmpswdHide = !cnfrmpswdHide"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="cnfrmpswdHide"
+                  >
+                    <mat-icon>{{
+                      cnfrmpswdHide ? "visibility_off" : "visibility"
+                    }}</mat-icon>
+                  </button>
+                </div>
+              </div>
+
+              <mat-error
+                *ngIf="
+                  userRegnForm.get('confirmPassword').hasError('required') &&
+                  userRegnForm.get('confirmPassword').touched
+                "
+                >Required</mat-error
+              >
+              <br />
+              <mat-label class="asterix--before">Email Id </mat-label>
+              <div class="row">
+                <div class="col-md-8">
+                  <input formControlName="emailId" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="generateMailOTP()"
+                  >
+                    Get OTP in mail
+                  </button>
+                </div>
+              </div>
+              <br />
+              <mat-error *ngIf="userRegnForm.get('emailId').hasError('pattern')"
+                >Enter valid email id</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  userRegnForm.get('emailId').hasError('required') &&
+                  userRegnForm.get('emailId').touched
+                "
+                >Required</mat-error
+              >
+              <br />
+              <mat-label class="asterix--before" *ngIf="otpSentinmail"
+                >OTP sent in mail
+              </mat-label>
+              <div class="row">
+                <div class="col-md-10" *ngIf="otpSentinmail">
+                  <input
+                    formcInputuppercase
+                    [required]="isEmailOtpBtnClicked"
+                    maxlength="4"
+                    *ngIf="otpSentinmail"
+                    oninput="this.value = this.value.toUpperCase()"
+                    class="form-control"
+                    formControlName="email_otp"
+                    [type]="emailOtpHide ? 'password' : 'text'"
+                    placeholder="********"
+                  />
+                </div>
+                <div class="col-md-2" *ngIf="otpSentinmail">
+                  <button
+                    mat-icon-button
+                    matSuffix
+                    (click)="emailOtpHide = !emailOtpHide"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="emailOtpHide"
+                  >
+                    <mat-icon>{{
+                      emailOtpHide ? "visibility_off" : "visibility"
+                    }}</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <!-- <mat-error *ngIf="userRegnForm.get('email_otp').hasError('required')">Required</mat-error> -->
+              <br *ngIf="otpSentinmail" />
+              <mat-label class="asterix--before">Mobile Number </mat-label>
+              <div class="row">
+                <div class="col-md-8">
+                  <input
+                    formcInputuppercase
+                    maxlength="10"
+                    formControlName="mobile"
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-md-4">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="generateMblOTP()"
+                  >
+                    Get OTP in mobile
+                  </button>
+                </div>
+              </div>
+              <mat-error *ngIf="userRegnForm.get('mobile').hasError('pattern')"
+                >Only numbers allowed. Should be 10 digit</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  userRegnForm.get('mobile').hasError('required') &&
+                  userRegnForm.get('mobile').touched
+                "
+                >Required</mat-error
+              >
+              <br />
+              <mat-label class="asterix--before" *ngIf="otpSentinmbl"
+                >OTP sent in mobile
+              </mat-label>
+              <div class="row" *ngIf="otpSentinmbl">
+                <div class="col-md-10" *ngIf="otpSentinmbl">
+                  <input
+                    [required]="isMblOtpBtnClicked"
+                    formcInputuppercase
+                    maxlength="4"
+                    *ngIf="otpSentinmbl"
+                    oninput="this.value = this.value.toUpperCase()"
+                    class="form-control"
+                    formControlName="mobile_otp"
+                    [type]="mblOtpHide ? 'password' : 'text'"
+                  />
+                </div>
+                <div class="col-md-2" *ngIf="otpSentinmail">
+                  <button
+                    mat-icon-button
+                    matSuffix
+                    (click)="mblOtpHide = !mblOtpHide"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="mblOtpHide"
+                  >
+                    <mat-icon>{{
+                      mblOtpHide ? "visibility_off" : "visibility"
+                    }}</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <!-- <mat-error *ngIf="userRegnForm.get('mobile_otp').hasError('required')">Required</mat-error>  -->
+              <br *ngIf="otpSentinmbl" />
+              <mat-label class="asterix--before" *ngIf="previewCaptcha != null"
+                >Captcha
+              </mat-label>
+              <input
+                formcInputuppercase
+                *ngIf="previewCaptcha != null"
+                oninput="this.value = this.value.toUpperCase()"
+                class="form-control"
+                formControlName="captcha"
+                type="text"
+                name="captcha"
+              />
+
+              <mat-error
+                *ngIf="
+                  userRegnForm.get('captcha').hasError('required') &&
+                  userRegnForm.get('captcha').touched
+                "
+                >Required</mat-error
+              >
+              <br />
+              <div class="row" *ngIf="previewCaptcha != null">
+                <div class="col-md-12"><img [src]="previewCaptcha" /></div>
+              </div>
+
+              <!-- <img [src]="previewCaptcha" height="50" width="150"  *ngIf="previewCaptcha" align="start">
+
+                              <br>
+                            <mat-label class="asterix--before">Captcha  </mat-label>
+
+
+                                    <input formcInputuppercase *ngIf="previewCaptcha"
+                                    class="form-control"
+                                      formControlName="captcha"
+                                      type="text"
+                                      name="captcha"
+                                      placeholder="captcha"
+                                    /> -->
+
+              <!--
+                                <div
+                                  fxLayout="row wrap"
+                                  fxLayoutAlign="start center"
+                                  style="margin-top: 20px;"
+                                >
+                                  <button-loading [loading]="loading" loadingText="Signing in..." class="mr-16" color="primary"
+                                    >Sign in</button-loading
+                                  >
+                                  <span class="px-16">or</span>
+                                  <a
+                                    class="font-weight-bold mat-color-primary"
+                                    routerLink="/sessions/signup"
+                                    >Sign Up</a
+                                  >
+                                </div> -->
+
+              <!-- <div fxLayout="row wrap" fxLayoutAlign="space-between center" style="margin-top: 20px">
+                                  <span>or connect with </span>
+                                  <div>
+                                    icons goes here
+                                  </div>
+                                </div> -->
+            </form>
+            <!-- <label>Username</label>
+                                <input formcInputuppercase type="text" class="form-control" id="username" placeholder="Enter Username">
+                                <label>Password</label>
+                                <input formcInputuppercase type="password" class="form-control" id="password" placeholder="Enter Password">
+                                <label>Captcha Entry</label>
+                                <div class="captcha">
+                                    <input formcInputuppercase id="captcha" type="text" class="form-control" name="captcha" placeholder="Captcha Value">
+                                    <img src="/assets/FormCImages/captcha.png"/>
+                                    <div class="clearfix"></div>
+                                </div>                         -->
+            <!-- <button-loading (click)="formCAuth()"   [loading]="loading" loadingText="Signing in..." class="mr-16" color="primary"
+                                >Sign in</button-loading
+                              > -->
+            <!-- <div class="d-grid">
+                                    <a href="index.html" class="btn btn-main" role="button" (click)="formCAuth()"  loadingText="Signing in..." >Sign In</a>
+                                </div> -->
+            <div class="row">
+              <div class="col-md-3"></div>
+
+              <div>
+                <button
+                  mat-raised-button
+                  (click)="postRegnDetails()"
+                  loadingText="Signing in..."
+                  class="d-grid btn btn-main"
+                >
+                  Sign Up
+                </button>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-sm-4 login_bg">
+                            <span><br/> </span>
+
+                        </div> -->
+      </div>
+    </div>
+  </form>
+</div>
+<!-- <footer> <a href="https://www.digitalindia.gov.in/"><img src="/assets/FormCImages/DI.png"/></a><a href="https://www.nic.in/"><img src="/assets/FormCImages/nic.png"/></a><br/><br/>
+      Copyright © of Ministry of Home Affairs, Government of India, All Right Reserverd.<br/>
+      Developed and Maintained by National Informatics Centre</footer> -->

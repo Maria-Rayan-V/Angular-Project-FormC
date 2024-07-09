@@ -1,0 +1,36 @@
+mat-card {
+  border: 0px solid #000;
+  width: 580px;
+  height: 180px;
+  background-color: rgb(23, 128, 196);
+}
+
+mat-label {
+  font-size: 15px;
+
+  letter-spacing: 0vmax;
+}
+
+mat-form-filed {
+  display: inline;
+}
+
+mat-card-header {
+  background-color:gray;
+  padding-top: 6px;
+}
+
+.auth-form {
+  padding: 3%;
+  background-color: white;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: white;
+  border-radius: 5px;
+
+}
+
+::ng-deep .mat-form-field-flex>.mat-form-field-infix {
+  padding: 0.5em 0px !important;
+}

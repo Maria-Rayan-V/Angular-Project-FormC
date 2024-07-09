@@ -1,0 +1,39 @@
+
+<div class="sidebar-panel">
+  <div
+    id="scroll-area"
+    [perfectScrollbar]
+    class="navigation-hold"
+    fxLayout="column"
+  >
+
+    <div class="sidebar-hold">
+      <!-- App Logo -->
+      <br><br>
+      <div class="branding px-20" >
+       
+        <!-- <img src="assets/FormCImages/BOI.png" alt="" class="app-logo" style="width:70px;height:70px;padding-top:5px ;"  /> -->
+        <span class="app-logo-text" style="font-size: 35px;">Form C</span>
+
+        <span
+          style="margin: auto"
+          *ngIf="layoutConf.sidebarStyle !== 'compact'"
+        ></span>
+        <mat-slide-toggle
+          fxHide.lt-md
+          (change)="toggleCollapse()"
+          [checked]="!layoutConf.sidebarCompactToggle"
+          *ngIf="layoutConf.sidebarStyle !== 'compact'"
+        ></mat-slide-toggle>
+      </div>
+
+
+      <!-- Navigation -->
+      <app-sidenav
+        [items]="menuItems"
+        [hasIconMenu]="hasIconTypeMenuItem"
+        [iconMenuTitle]="iconTypeMenuTitle"
+      ></app-sidenav>
+    </div>
+  </div>
+</div>

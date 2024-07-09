@@ -1,0 +1,77 @@
+<div mat-dialog-content *ngIf="!isMedvisa">
+  <button class="close" mat-icon-button color="warn" (click)="dialogClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <table>
+    <tr>
+      <th>Form C Id:</th>
+      <td>{{ pendingFormCDetails.form_c_appl_id }}</td>
+    </tr>
+    <tr>
+      <th>Name:</th>
+      <td>{{ pendingFormCDetails.given_name }}</td>
+    </tr>
+
+    <tr>
+      <th>Passport Number:</th>
+      <td>{{ pendingFormCDetails.passnum }}</td>
+    </tr>
+    <tr>
+      <th>Nationality:</th>
+      <td>{{ pendingFormCDetails.nationality }}</td>
+    </tr>
+    <tr>
+      <th>DOB:</th>
+      <td>{{ pendingFormCDetails.dob }}</td>
+    </tr>
+  </table>
+  <br /><br />
+  <!-- <div *ngIf="pendingFormCDetails" class="col">
+   <p>Name: {{pendingFormCDetails.given_name}}{{pendingFormCDetails.surname}}</p>
+   <p>Nationality: {{pendingFormCDetails.nationality_desc}}</p>
+   <p>Passport Number: {{pendingFormCDetails.passnum}</p>
+   </div> -->
+  <p style="font-size: larger">Do you want to delete the record ?</p>
+</div>
+<div mat-dialog-content *ngIf="isMedvisa">
+  <button class="close" mat-icon-button color="warn" (click)="dialogClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <table>
+    <tr>
+      <th>File Reference No:</th>
+      <td>{{ pendingFormCDetails.fileRefno }}</td>
+    </tr>
+    <tr>
+      <th>Name:</th>
+      <td>{{ pendingFormCDetails.patientName }}</td>
+    </tr>
+
+    <!-- <tr>
+              <th> Passport Number:  </th>
+              <td>  {{pendingFormCDetails.pptNum}} </td>
+          </tr>
+          <tr>
+            <th> Address:  </th>
+            <td>  {{pendingFormCDetails.patientAddr}} </td>
+        </tr>
+        <tr>
+          <th> DOB:  </th>
+          <td>  {{pendingFormCDetails.dob}} </td>
+      </tr> -->
+  </table>
+  <br /><br />
+  <!-- <div *ngIf="pendingFormCDetails" class="col">
+     <p>Name: {{pendingFormCDetails.given_name}}{{pendingFormCDetails.surname}}</p>
+     <p>Nationality: {{pendingFormCDetails.nationality_desc}}</p>
+     <p>Passport Number: {{pendingFormCDetails.passnum}</p>
+     </div> -->
+  <p style="font-size: larger">Do you want to delete the record ?</p>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="deleteRecord()">
+    Yes
+  </button>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <button mat-raised-button color="warn" (click)="closedialog()">No</button>
+</div>

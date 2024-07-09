@@ -1,0 +1,34 @@
+mat-dialog-content{
+    padding: 20px;
+}
+h1,
+h5,
+p {
+  word-break: break-all;
+  font-family: 'Courier New', Courier, monospace;
+}
+div {
+  text-align: center;
+  background: #fdfdfd;
+  
+  button {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    margin-bottom: 20px;
+    &disabled {
+      cursor: no-drop;
+    }
+  }
+
+  .data {
+    // background: antiquewhite;
+    border-radius: 5px;
+  }
+}
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+  }

@@ -1,0 +1,326 @@
+
+<mat-card  >
+  <mat-card-header style="text-align: center;padding-left: 35%;">
+    <img
+      src="assets/FormCImages/boi_logo.png" height="100px" width="100px"
+      mat-card-avatar />
+    <mat-card-title style="color: black;">SIGN UP</mat-card-title>
+    <mat-card-subtitle>
+      User Registration for Form 'C' and Form 'S'
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+<div fxLayout="column" fxLayout.lt-sm="row" class="basic-form">
+  <form [formGroup]="signupForm" >
+    <br>
+     <div  class='heading' ><p style="color: white;">Individual Registration</p></div>
+    <br>
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label>User Id *</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+          <input oninput="this.value = this.value.toUpperCase()" matInput   maxlength="50">
+          <!-- <mat-error *ngIf="tempidGenerationForm.get('given_name').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="tempidGenerationForm.get('given_name').hasError('pattern')">Only alphabets and space allowed -->
+          <!-- </mat-error> -->
+        </mat-form-field>
+      </div>
+     <div class="col-md-3">
+      <mat-label>Password *</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+        <input matInput maxlength="50"   [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+     </div>
+       <div class="col-md-3">
+        <mat-label>Confirm Password *</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput maxlength="50"   [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+       </div>
+    </div>
+    <br>
+     <div  class='heading' ><p style="color: white;">If you forget your password we will identify you with this information</p></div>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <mat-label>Security Question</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select placeholder="Security Question">
+            <mat-option value="F">Name of the hospital</mat-option>
+            <mat-option value="M">Favorite author</mat-option>
+            <mat-option value="X">Favourite Book</mat-option>
+          </mat-select>
+          <!-- <mat-error *ngIf="signupForm.get('securityQues').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-label>Your Answer</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput  placeholder="Answer" maxlength="150">
+          <!-- <mat-error *ngIf="signupForm.get('answer').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+    </div>
+      <div class="row">
+      <div class="col-md-3">
+        <mat-label>Name</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput  placeholder="Name" maxlength="150">
+          <!-- <mat-error *ngIf="personalInfoForm.get('name').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Gender</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select  placeholder="Gender">
+            <mat-option value="F">Female</mat-option>
+            <mat-option value="M">Male</mat-option>
+            <mat-option value="X">Transgender</mat-option>
+          </mat-select>
+          <!-- <mat-error *ngIf="personalInfoForm.get('gender').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Date of birth</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput [matDatepicker]="picker"  placeholder="DOB">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <!-- <mat-error *ngIf="personalInfoForm.get('gender').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Occupation</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput  placeholder="Occupation" maxlength="50">
+          <!-- <mat-error *ngIf="personalInfoForm.get('designation').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label>Email Id</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput  placeholder="Email Id" maxlength="50">
+          <!-- <mat-error *ngIf="personalInfoForm.get('emailId').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Mobile Number</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput  placeholder="Mobile" maxlength="50">
+          <!-- <mat-error *ngIf="personalInfoForm.get('mobile').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Phone Number</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput  placeholder="Phone" maxlength="50">
+          <!-- <mat-error *ngIf="personalInfoForm.get('phnNum').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Nationality</mat-label>
+
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select  placeholder="Nationality">
+            <mat-option *ngFor="let country of countries" [value]="country.country_code">
+              {{ country.country_name }}
+            </mat-option>
+          </mat-select>
+          <!-- <mat-error *ngIf="personalInfoForm.get('gender').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+    </div>
+    <br>
+    <div  class='heading' ><p style="color: white;">Hotel / Guest House / Dharamshala / Institute / Individual House etc. Details</p></div>
+   <br>
+    <div class="row">
+      <div class="col -md-3">
+        <mat-label>Name</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput  placeholder="Hotel Name" maxlength="150">
+          <!-- <mat-error *ngIf="hotelInfoForm.get('name').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Capacity</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput  placeholder="capacity" maxlength="150">
+          <!-- <mat-error *ngIf="hotelInfoForm.get('capacity').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Address</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput  placeholder="Address" maxlength="150">
+          <!-- <mat-error *ngIf="hotelInfoForm.get('address').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>State </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select matInput placeholder="State" >
+            <mat-option *ngFor="let state of states" [value]="state.stateCode">
+              {{ state.ststeName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label>City</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select matInput placeholder="City"  #select_nationality>
+            <!-- <mat-option
+                          *ngFor="let country of states"
+                          [value]="country.country_code"
+                        >
+                          {{ country.country_name }}
+                        </mat-option>  -->
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Accomodation Type</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select matInput placeholder="Accomodation Type"  #select_nationality>
+            <!-- <mat-option
+                      *ngFor="let country of states"
+                      [value]="country.country_code"
+                    >
+                      {{ country.country_name }}
+                    </mat-option>  -->
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Accomodation Type</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select matInput placeholder="Accomodation Grade"  #select_nationality>
+            <!-- <mat-option
+                          *ngFor="let country of states"
+                          [value]="country.country_code"
+                        >
+                          {{ country.country_name }}
+                        </mat-option>  -->
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Email Id</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput  placeholder="Email Id" maxlength="50">
+          <!-- <mat-error *ngIf="hotelInfoForm.get('emailId').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <mat-label>Mobile Number</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput  placeholder="Mobile" maxlength="50">
+          <!-- <mat-error *ngIf="hotelInfoForm.get('mobile').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-label>Phone Number</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input matInput  placeholder="Phone" maxlength="50">
+          <!-- <mat-error *ngIf="hotelInfoForm.get('phnNum').hasError('required')">Required</mat-error> -->
+        </mat-form-field>
+      </div>
+    </div>
+    <br>
+    <div  class='heading' ><p style="color: white;"> Hotel / Guest House / Dharamshala / Institute / Individual House etc.  Owner's Details</p></div>
+   <br>
+   <div class="row">
+    <div class="col-md-11">
+      <table  class="mat-elevation-z8" mat-table [dataSource]="DsAddnlPlaceofvisit">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef> Address </th>
+          <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef>State</th>
+          <td mat-cell *matCellDef="let element"> {{element.stateDesc}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef> City</th>
+          <td mat-cell *matCellDef="let element"> {{element.cityDesc}} </td>
+        </ng-container>
+        <ng-container matColumnDef="emailId">
+          <th mat-header-cell *matHeaderCellDef>Email Id</th>
+          <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
+        </ng-container>
+        <ng-container matColumnDef="phnNum">
+          <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+          <td mat-cell *matCellDef="let element"> {{element.phnNum}}</td>
+        </ng-container>
+        <ng-container matColumnDef="mblNum">
+          <th mat-header-cell *matHeaderCellDef>Mobile Number</th>
+          <td mat-cell *matCellDef="let element"> {{element.mblNum}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon (click)="OpenDialog('Delete',element)">delete</mat-icon>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumn;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="5">No data </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-1">
+      <button color="primary" mat-raised-button (click)="OpenDialog('Add',{})">Add</button>
+    </div>
+  </div><br>
+
+    <!-- <div fxLayout="row" fxLayoutGap="20px">
+      <div> <button type="submit" mat-raised-button color="primary" [class.spinner]="loading" [disabled]="loading"  (click)="isIdGeneratedAlready  ? gotoNext() : posttempidData()"   >Next</button>
+      </div>
+    </div> -->
+  </form>
+</div></mat-card-content>
+</mat-card>

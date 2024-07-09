@@ -1,0 +1,109 @@
+<div class="container">
+    <form [formGroup]="addSubuserForm" >
+    <div class="row">
+        <div class="col -md-3">
+          <mat-label class="asterix--before">Userid</mat-label>
+          <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+            <input matTooltip="Minimum 8
+            charecters, Should contain 1 alphabet and 1 number"
+            matTooltipPosition="left" (blur)="checkValidUserForRegn()" (input)="onUsernameChange()"  matInput  formcInputuppercase formControlName="userid" placeholder="userid" maxlength="50">
+            <mat-error *ngIf="addSubuserForm.get('userid').hasError('required') && addSubuserForm.get('userid').touched">Required</mat-error>
+            <mat-error *ngIf="addSubuserForm.get('userid').hasError('pattern') "></mat-error>
+          </mat-form-field>
+          <div *ngIf="useridAvailable==true">
+            <p  style="color: green;font-size: large;">Userid available</p>
+        </div>
+        </div>
+        <div class="col-md-3">
+            <mat-label class="asterix--before">Password</mat-label>
+            <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+              <input type="password" matInput  formcInputuppercase formControlName="password" placeholder="password" maxlength="150">
+              <mat-error *ngIf="addSubuserForm.get('password').hasError('required') && addSubuserForm.get('password').touched">Required</mat-error>
+            </mat-form-field>
+          </div>
+        <div class="col-md-3">
+          <mat-label class="asterix--before">Username</mat-label>
+          <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+            <input matInput  formcInputuppercase formControlName="user_name" placeholder="username" maxlength="50">
+            <mat-error *ngIf="addSubuserForm.get('user_name').hasError('required') && addSubuserForm.get('user_name').touched">Required</mat-error>
+            <mat-error *ngIf="addSubuserForm.get('user_name').hasError('pattern')">Only alphabets
+                and space allowed
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-3">
+             <div class="col">
+                <mat-label>Gender</mat-label>
+                <mat-form-field floatLabel="always" appearance="outline">
+                  <mat-select formControlName="gender" placeholder="Gender">
+                    <mat-option value="F">Female</mat-option>
+                    <mat-option value="M">Male</mat-option>
+                    <mat-option value="X">Transgender</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="addSubuserForm.get('gender').hasError('required')">Required</mat-error>
+                </mat-form-field>
+             </div>
+
+        </div>
+      </div><br><br>
+      <div class="row">
+        <div class="col-md-3">
+            <mat-label class="asterix--before">Designation</mat-label>
+            <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+              <input  matInput formcInputuppercase formControlName="designation" placeholder="Designation" maxlength="50">
+              <mat-error *ngIf="addSubuserForm.get('designation').hasError('required')">Required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-label class="asterix--before">Email Id</mat-label>
+            <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+              <input matInput  formControlName="e_mail_id" placeholder="Email Id" maxlength="50">
+              <mat-error *ngIf="addSubuserForm.get('e_mail_id').hasError('required')&&addSubuserForm.get('e_mail_id').touched">Required</mat-error>
+              <mat-error *ngIf="addSubuserForm.get('e_mail_id').hasError('pattern')&&addSubuserForm.get('e_mail_id').touched">Enter valid email id</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-label>Phone Number </mat-label>
+            <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+              <input oninput="this.value = this.value.toUpperCase()" matInput formControlName="phone_no"  maxlength="50">
+              <mat-error *ngIf="addSubuserForm.get('phone_no').hasError('required')">Required</mat-error>
+              <mat-error *ngIf="addSubuserForm.get('phone_no').hasError('pattern')">Only numbers allowed
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-label>Nationality</mat-label>
+            <mat-form-field floatLabel="always" appearance="outline">
+              <mat-select formControlName="nationality" placeholder="Nationality">
+                <mat-option *ngFor="let country of countries" [value]="country.country_code">
+                  {{ country.country_name }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="addSubuserForm.get('nationality').hasError('required')">Required</mat-error>
+            </mat-form-field>
+          </div>
+      </div><br><br>
+      <div class="row">
+          <div class="col-md-3">
+            <div class="col">
+                <mat-label>Status</mat-label>
+                <mat-form-field floatLabel="always" appearance="outline">
+                  <mat-select formControlName="status" placeholder="status">
+                    <mat-option value="Y">Active</mat-option>
+                    <mat-option value="N">Inactive</mat-option>
+
+                  </mat-select>
+                  <mat-error *ngIf="addSubuserForm.get('status').hasError('required')">Required</mat-error>
+                </mat-form-field>
+             </div>
+          </div>
+      </div>
+      <div class="div" align="end">  <button color="primary" mat-raised-button (click)="postSubUserDetails()"
+       >Add User</button></div>
+
+      </form>
+</div>

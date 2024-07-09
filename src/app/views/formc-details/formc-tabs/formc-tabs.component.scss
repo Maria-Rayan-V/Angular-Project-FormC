@@ -1,0 +1,18 @@
+@keyframes glowing {
+    0% {
+      background-color: #1780c4;
+      box-shadow: 0 0 5px #1780c4;
+    }
+    50% {
+      background-color: #1780c4;
+      box-shadow: 0 0 20px #1780c4;
+    }
+    100% {
+      background-color: #1780c4;
+      box-shadow: 0 0 5px #1780c4;
+    }
+  }
+.blink-animation{
+animation: glowing 300ms infinite;
+font-size: larger;
+}

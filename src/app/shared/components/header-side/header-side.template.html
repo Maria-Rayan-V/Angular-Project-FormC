@@ -1,0 +1,123 @@
+<mat-toolbar>
+  <mat-toolbar-row class="topbar">
+    <!-- Sidenav toggle button -->
+    <button
+      *ngIf="layoutConf.sidebarStyle !== 'compact'"
+      mat-icon-button
+      id="sidenavToggle"
+      fxHide.gt-md
+      fxHide.md
+      (click)="toggleSidenav()"
+      matTooltip="Toggle Hide/Open"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- Search form -->
+    <!-- <div fxFlex fxHide.lt-sm="true" class="search-bar">
+    <form class="top-search-form">
+      <mat-icon role="img">search</mat-icon>
+      <input autofocus="true" placeholder="Search" type="text" />
+    </form>
+  </div> -->
+    <!-- <span> <img src="assets/FormCImages/BOI.png" alt=""  style="width:70px;height:60px;padding-top:5px ;"  /></span> -->
+
+    <span
+      *ngIf="userType==4"
+      fxFlex
+      style="font-size: 30px; text-align: center; padding-left: 30%"
+    >
+      FRRO/ FRO Administrator Module</span
+    >
+    <span fxFlex style="font-size: 30px; text-align: center">
+      {{accoName}}</span
+    >
+    <span style="font-size: 16px; text-align: center">
+      {{userName|uppercase}}</span
+    >
+    <!--
+  <matx-search-input-over placeholder="Country (e.g. US)" resultPage="/search">
+  </matx-search-input-over>
+  -->
+    <!-- Open "views/search-view/result-page.component" to understand how to subscribe to input field value -->
+
+    <!-- Notification toggle button -->
+    <!-- <button
+    mat-icon-button
+    matTooltip="Notifications"
+    (click)="toggleNotific()"
+    [style.overflow]="'visible'"
+    class="topbar-button-right"
+  >
+    <mat-icon>notifications</mat-icon>
+    <span class="notification-number mat-bg-warn">3</span>
+  </button> -->
+    <!-- Top left user menu -->
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="accountMenu"
+      class="topbar-button-right img-button"
+    >
+      <!--    <img src="assets/images/face-7.jpg" alt="" />-->
+      <span class="material-icons"> person </span>
+    </button>
+    <br />
+
+    <mat-menu #accountMenu="matMenu">
+      <button [matMenuTriggerFor]="profile" mat-menu-item>
+        <mat-icon>account_box</mat-icon>
+        <span>Profile</span>
+      </button>
+      <!-- <button mat-menu-item [routerLink]="['/profile/settings']">
+      <mat-icon>settings</mat-icon>
+      <span>Account Settings</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon>
+      <span>Disable alerts</span>
+    </button> -->
+      <button mat-menu-item (click)="jwtAuth.signout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sign out</span>
+      </button>
+    </mat-menu>
+    <mat-menu #profile="matMenu">
+      <table>
+        <tr>
+          &nbsp; &nbsp;
+          <th>Username</th>
+          &nbsp; &nbsp;
+          <td>{{userName}}</td>
+          &nbsp; &nbsp;
+        </tr>
+        <tr>
+          &nbsp; &nbsp;
+          <th>Mail</th>
+          &nbsp; &nbsp;
+          <td>{{userMailid}}</td>
+          &nbsp; &nbsp;
+        </tr>
+        <tr>
+          &nbsp; &nbsp;
+          <th>Mobile</th>
+          &nbsp; &nbsp;
+          <td>{{mobileNo}}</td>
+          &nbsp; &nbsp;
+        </tr>
+        <tr>
+          &nbsp;
+          <th>Last Login</th>
+          &nbsp;
+          <td>{{lastLogin|date:'dd/MM/YYYY HH:mm:s'}}</td>
+          &nbsp; &nbsp;
+        </tr>
+      </table>
+    </mat-menu>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="topbar">
+    <span fxFlex style="font-size: 17px; text-align: center">
+      {{accoAddr}} {{accoCity}}</span
+    >
+    <span style="font-size: 17px; text-align: center"> {{frroName}} </span>
+  </mat-toolbar-row>
+</mat-toolbar>

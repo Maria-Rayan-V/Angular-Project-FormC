@@ -1,0 +1,99 @@
+<!-- (pptnumtoparent)="getPptnumFromChild($event)" -->
+<br /><br /><br />
+<p align="end" *ngIf="appIdFromChild">
+  Form C Id:
+  <span style="color: #3873d4; padding-right: 10%">{{ appIdFromChild }}</span>
+</p>
+<div class="container">
+  <mat-horizontal-stepper
+    linear="true"
+    #myStepper
+    class="formc-stepper mat-elevation-z5"
+    [orientation]="(stepperOrientation | async)!"
+  >
+    <ng-template matStepperIcon="edit">
+      <mat-icon>done</mat-icon>
+    </ng-template>
+    <mat-step [stepControl]="step1.tempidGenerationForm" label="Basic Details">
+      <!-- <p align="end" *ngIf="appIdFromChild">Form C Id: <span style="color: #3873d4;">{{appIdFromChild}}</span></p> -->
+      <app-formctempapplid
+        [isFromExistingAppl]="isFromExistingAppl"
+        [isFromPendingAppl]="isPendingApplication"
+        [stepperNxtFunction]="goForward"
+        (sendSplCatToStepper)="getSplCatFromChild($event)"
+        (notifyParent)="getApplicationIdFromChild($event)"
+        #step1
+      >
+      </app-formctempapplid>
+    </mat-step>
+    <mat-step
+      [stepControl]="step2.personalDetailsForm"
+      label="Personal Details"
+    >
+      <!-- <p align="end" *ngIf="appIdFromChild">Form C Id: <span style="color: #3873d4;">{{appIdFromChild}}</span></p> -->
+      <formc-personal-details
+        [isFromPendingAppl]="isPendingApplication"
+        [isFromExistingAppl]="isFromExistingAppl"
+        [stepperNxtFunction]="goForward"
+        (sendDOBToStepper)="getDOBFromChild($event)"
+        #step2
+      >
+      </formc-personal-details>
+    </mat-step>
+    <mat-step
+      [stepControl]="step3.referenceContactForm"
+      label="Reference Details"
+    >
+      <!-- <p align="end" *ngIf="appIdFromChild">Form C Id: <span style="color: #3873d4;">{{appIdFromChild}}</span></p> -->
+      <formc-reference-details
+        [stepperNxtFunction]="goForward"
+        #step3
+      ></formc-reference-details>
+    </mat-step>
+    <mat-step [stepControl]="step4.pptVisaForm" label="Passport, Visa Details">
+      <!-- <p align="end" *ngIf="appIdFromChild">Form C Id: <span style="color: #3873d4;">{{appIdFromChild}}</span></p> -->
+      <formc-ppt-visa-details
+        [pptnumFromParent]="pptNumFromChild"
+        [splCatCodeFromParent]="splCategoryFromChild"
+        [dobFromParent]="DOBFromChild"
+        [isFromPendingAppl]="isPendingApplication"
+        [isFromExistingAppl]="isFromExistingAppl"
+        [stepperNxtFunction]="goForward"
+        #step4
+      ></formc-ppt-visa-details>
+    </mat-step>
+    <mat-step
+      [stepControl]="step5.arrivalNxtdesForm"
+      label="Arrival, Next Destination Details"
+    >
+      <!-- <p align="end" *ngIf="appIdFromChild">Form C Id: <span style="color: #3873d4;">{{appIdFromChild}}</span></p> -->
+      <formc-arrival-nxtdes-details
+        [splCatCodeFromParent]="splCategoryFromChild"
+        [isFromPendingAppl]="isPendingApplication"
+        [isFromExistingAppl]="isFromExistingAppl"
+        [stepperNxtFunction]="goForward"
+        #step5
+      ></formc-arrival-nxtdes-details>
+    </mat-step>
+
+    <mat-step [stepControl]="step6.photoUploadForm" label="Photo Upload">
+      <!-- <p align="end" *ngIf="appIdFromChild">Form C Id: <span style="color: #3873d4;">{{appIdFromChild}}</span></p> -->
+      <app-photo-upload
+        #step6
+        [stepperNxtFunction]="goForward"
+        [isFromPendingAppl]="isPendingApplication"
+        (sendRandomNotoParent)="getRandomNumberFromChild($event)"
+      ></app-photo-upload>
+      <div class="webcam-image" *ngIf="webcamImage">
+        <img [src]="webcamImage.imageAsDataUrl" />
+      </div>
+    </mat-step>
+    <mat-step label="Preview Details">
+      <formc-previewdetails
+        #step7
+        [randomNumberFromParent]="randonNumbertoParent"
+      >
+      </formc-previewdetails>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

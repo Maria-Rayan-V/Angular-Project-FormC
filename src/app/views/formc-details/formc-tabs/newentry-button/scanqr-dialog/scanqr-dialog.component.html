@@ -1,0 +1,52 @@
+<div [style.padding.px]="20">
+  <button class="close" mat-icon-button color="warn" (click)="dialogClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+    <h1 mat-dialog-title>Scan Your QR Code</h1>
+  
+    <!-- ngx-scanner-qrcode -->
+    <div align="center" style="height: 300px;width: 300px;" class="center">  <ngx-scanner-qrcode
+      #action="scanner"
+      (data)="dataFromQR($event)"
+      (error)="onError($event)"
+    ></ngx-scanner-qrcode></div>
+  
+   <!--  ['KL0200149718SURNAME<<GIVENNAME', 'PASSQ122', 'VISA1235', '9104174', 'CAN7', '180430', '180507', '180507', 'KL02/VCN/CAN/24/2018'] -->
+    <!-- data  -->
+      <div *ngIf="output" style="text-align: justify;">
+        <p style="padding-top: 5%;" class="data">Data: {{output}}</p>
+        <!-- <p style="padding-top: 2%;" class="data">Application Id: {{this.splitOutput[0].slice(0,12)}}</p>
+        <p  class="data">Name: {{this.givenName[1]}} {{this.givenName[0]}}</p>
+        <p   class="data">Passport Number: {{ splitOutput[1] }}</p>
+        <p class="data">Visa Number: {{splitOutput[2]}}</p>
+        <p class="data">Service Number: {{splitOutput[8]}} </p> -->
+      </div>
+   
+  
+    <!-- Loading -->  
+     <div style="padding-top: 17%;">
+      <p *ngIf="action.isLoading">⌛ Scanning...</p>
+  
+      <!-- toggleCamera -->
+      <button
+        (click)="action.toggleCamera()" 
+        class="btn"
+        [class.btn-info]="!action.isStart"
+        [class.btn-warning]="action.isStart"
+        [disabled]="action.isLoading"
+      >
+        <img
+          *ngIf="!action.isStart" 
+          src="https://img.icons8.com/ios/50/000000/no-camera--v2.png"
+          width="30px"
+        /> 
+        <img
+          *ngIf="action.isStart"
+          src="https://img.icons8.com/ios/50/000000/no-camera--v1.png"
+          width="30px"
+        />
+      </button>
+     </div>
+   
+  </div>
+  

@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+  }
+  .mat-header-cell {
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    background-color:#5A5A5A;
+}
+.mat-row:nth-child(odd){
+  background-color: #DCDCDC;
+}
+      
+.mat-row:nth-child(even){
+  background-color: white;
+}
+td{
+  font-size: medium;
+  
+}.blink-animation{
+    animation: glowing 300ms infinite;
+    font-size: larger;
+    }

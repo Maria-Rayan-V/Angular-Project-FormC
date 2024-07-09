@@ -1,0 +1,80 @@
+<!-- <div class="row">
+<div class="col-md-3">
+  <p>rayan</p>
+</div>
+<div class="col-md-6">
+  <p>paiva</p>
+</div>
+</div> -->
+<div fxLayout="column" fxLayout.lt-sm="row" class="basic-form">
+  <form [formGroup]="tempidGenerationForm" >
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label class="asterix--before">Given Name </mat-label>
+        <mat-form-field  floatLabel="always" appearance="outline" class="full-width">
+          <input formcInputuppercase matInput formControlName="given_name"  maxlength="50">
+          <mat-error *ngIf="tempidGenerationForm.get('given_name').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="tempidGenerationForm.get('given_name').hasError('pattern')">Only alphabets and space allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label>Surname</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+          <input formcInputuppercase matInput formControlName="surname"  maxlength="50">
+          <mat-error *ngIf="tempidGenerationForm.get('surname').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="tempidGenerationForm.get('surname').hasError('pattern')">Only Alphabets Allowed</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="asterix--before">Gender </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+          <mat-select formControlName="gender" >
+            <mat-option value="F">Female</mat-option>
+            <mat-option value="M">Male</mat-option>
+            <mat-option value="X">Transgender</mat-option>
+          </mat-select>
+          <mat-error *ngIf="tempidGenerationForm.get('gender').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="asterix--before">Nationality </mat-label>
+        <mat-form-field  [ngClass]="{'readonly-wrapper' : isFromExistingAppl || isFromPendingAppl}" floatLabel="always" appearance="outline" class="full-width">
+          <mat-select   [ngClass]="{'readonly-block' : isFromExistingAppl || isFromPendingAppl}" [disabled]="isFromExistingAppl || isFromPendingAppl"  matInput formControlName="nationality" >
+            <mat-option *ngFor="let country of countries" [value]="country.country_code">
+              {{ country.country_name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="tempidGenerationForm.get('nationality').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label class="asterix--before">Special Category </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select  matInput formControlName="spl_category_code" >
+            <mat-option *ngFor="let splCategory of splCategories" [value]="splCategory.splCatCode">
+              {{ splCategory.splCatDesc }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="tempidGenerationForm.get('spl_category_code').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-md-3">
+        <mat-label class="asterix--before">Passport Number </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+          <input formcInputuppercase [readonly]="isFromExistingAppl || isFromPendingAppl"  matInput  formControlName="passnum" maxlength="20">
+          <mat-error *ngIf="tempidGenerationForm.get('passnum').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="tempidGenerationForm.get('passnum').hasError('pattern')">Only Alphabets And Numbers Allowed
+          </mat-error>
+        </mat-form-field>
+      </div> -->
+    </div>
+    <div fxLayout="row" class="prevNxtbtn" fxLayoutGap="20px">
+      <div> <button type="submit" mat-raised-button color="primary" [class.spinner]="loading" [disabled]="loading"  (click)=" posttempidData()"   >Next</button>
+      </div>
+    </div>
+  </form>
+</div>

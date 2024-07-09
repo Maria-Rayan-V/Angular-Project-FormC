@@ -1,0 +1,394 @@
+<mat-dialog-content style="height: 100%">
+  <button class="close" mat-icon-button color="warn" (click)="dialogClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-toolbar mat-dialog-title> {{ action }} Attendant Details </mat-toolbar>
+
+  <br />
+  <form [formGroup]="attendantDetailsForm" *ngIf="action == 'Add'">
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label>Givenname </mat-label>
+          <input
+            oninput="this.value = this.value.toUpperCase()"
+            matInput
+            formControlName="givenName"
+            maxlength="50"
+          />
+          <mat-error
+            *ngIf="attendantDetailsForm.get('givenName').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error
+            *ngIf="attendantDetailsForm.get('givenName').hasError('pattern')"
+            >Only alphabets and space allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label>Surname </mat-label>
+          <input
+            oninput="this.value = this.value.toUpperCase()"
+            matInput
+            formControlName="surname"
+            maxlength="50"
+          />
+          <mat-error
+            *ngIf="attendantDetailsForm.get('surname').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error
+            *ngIf="attendantDetailsForm.get('surname').hasError('pattern')"
+            >Only alphabets and space allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-label class="asterix--before">Gender </mat-label>
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-select formControlName="gender">
+            <mat-option value="F">Female</mat-option>
+            <mat-option value="M">Male</mat-option>
+            <mat-option value="X">Transgender</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="attendantDetailsForm.get('gender').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <mat-label class="asterix--before">Date of birth</mat-label>
+        <mat-form-field
+          floatLabel="always"
+          class="full-width"
+          appearance="standard"
+          formcDateFormat
+        >
+          <input
+            formcInputuppercase
+            matInput
+            formcInputuppercase
+            readonly
+            [matDatepicker]="dob"
+            formControlName="dob"
+          />
+          <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+          <mat-datepicker #dob></mat-datepicker>
+          <mat-error
+            *ngIf="attendantDetailsForm.get('dob').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-label class="asterix--before">Nationality</mat-label>
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-select formControlName="nationality" placeholder="Nationality">
+            <mat-option
+              *ngFor="let country of countries"
+              [value]="country.country_code"
+            >
+              {{ country.country_name }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="attendantDetailsForm.get('nationality').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-label class="asterix--before">Passport Number </mat-label>
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <input
+            formcInputuppercase
+            matInput
+            formControlName="pptNum"
+            maxlength="20"
+          />
+          <mat-error
+            *ngIf="attendantDetailsForm.get('pptNum').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error
+            *ngIf="attendantDetailsForm.get('pptNum').hasError('pattern')"
+            >Only Alphabets And Numbers Allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label>Address </mat-label>
+          <input
+            matInput
+            oninput="this.value = this.value.toUpperCase()"
+            formControlName="addressNative"
+            maxlength="150"
+          />
+          <mat-error
+            *ngIf="
+              attendantDetailsForm.get('addressNative').hasError('required')
+            "
+            >Required</mat-error
+          >
+          <mat-error
+            *ngIf="
+              attendantDetailsForm.get('addressNative').hasError('pattern')
+            "
+            >Only Alphabets,Numbers - / , # : . () are allowed</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label>Address </mat-label>
+          <input
+            matInput
+            oninput="this.value = this.value.toUpperCase()"
+            formControlName="addressIndia"
+            maxlength="150"
+          />
+          <mat-error
+            *ngIf="
+              attendantDetailsForm.get('addressIndia').hasError('required')
+            "
+            >Required</mat-error
+          >
+          <mat-error
+            *ngIf="attendantDetailsForm.get('addressIndia').hasError('pattern')"
+            >Only Alphabets,Numbers - / , # : . () are allowed</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label> State </mat-label>
+          <mat-select
+            matInput
+            formControlName="attendanttState"
+            (selectionChange)="onChangeState($event)"
+          >
+            <mat-option *ngFor="let state of states" [value]="state.stateCode">
+              {{ state.ststeName }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              attendantDetailsForm.get('attendanttState').hasError('required')
+            "
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label> City </mat-label>
+          <mat-select matInput formControlName="attendantCity">
+            <mat-option
+              *ngFor="let district of districts"
+              [value]="district.districtCode"
+            >
+              {{ district.districtName }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              attendantDetailsForm.get('attendantCity').hasError('required')
+            "
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label>Contact In Native </mat-label>
+          <input
+            oninput="this.value = this.value.toUpperCase()"
+            matInput
+            formControlName="contactNative"
+            maxlength="50"
+          />
+          <mat-error
+            *ngIf="
+              attendantDetailsForm.get('contactNative').hasError('required')
+            "
+            >Required</mat-error
+          >
+          <mat-error
+            *ngIf="
+              attendantDetailsForm.get('contactNative').hasError('pattern')
+            "
+            >Only numbers allowed</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label>Contact In India</mat-label>
+          <input
+            oninput="this.value = this.value.toUpperCase()"
+            matInput
+            formControlName="contactIndia"
+            maxlength="50"
+          />
+          <mat-error
+            *ngIf="
+              attendantDetailsForm.get('contactIndia').hasError('required')
+            "
+            >Required</mat-error
+          >
+          <mat-error
+            *ngIf="attendantDetailsForm.get('contactIndia').hasError('pattern')"
+            >Only numbers allowed</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label>Email Id </mat-label>
+          <input matInput formControlName="emailId" maxlength="50" />
+          <mat-error
+            *ngIf="attendantDetailsForm.get('emailId').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error
+            *ngIf="attendantDetailsForm.get('emailId').hasError('pattern')"
+            >Enter Valid Email Id
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-label class="asterix--before">Pincode</mat-label>
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <input
+            formcInputuppercase
+            matInput
+            formControlName="pincodeOfAttendant"
+            required
+            minlength="6"
+            maxlength="6"
+          />
+          <mat-error
+            *ngIf="
+              attendantDetailsForm
+                .get('pincodeOfAttendant')
+                .hasError('required') &&
+              attendantDetailsForm.get('pincodeOfAttendant').touched
+            "
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label>Relationship </mat-label>
+          <input
+            oninput="this.value = this.value.toUpperCase()"
+            matInput
+            formControlName="relationship"
+            maxlength="50"
+          />
+          <mat-error
+            *ngIf="
+              attendantDetailsForm.get('relationship').hasError('required')
+            "
+            >Required</mat-error
+          >
+          <mat-error
+            *ngIf="attendantDetailsForm.get('relationship').hasError('pattern')"
+            >Only alphabets and space allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="action == 'Delete'">
+    <h2>Do you want to delete the record ?</h2>
+    <p>Name: {{ data.given_name }} {{ data.surname }}</p>
+    <p>DOB: {{ data.dob }}</p>
+    <p>Address: {{ data.addressNative }}</p>
+    <p>Email: {{ data.emailId }}</p>
+    <p>Relationship: {{ data.relationship }}</p>
+  </div>
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" (click)="dialogClose()">Close</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <button mat-raised-button color="primary" (click)="addRecord()">
+    {{ action }}
+  </button>
+</div>
+<!-- <mat-dialog-actions align="end">
+        <button class="mat-raised-button " style="color: warn;"  (click)="dialogClose()">Close</button>    &nbsp;
+        <button class="mat-raised-button " color="primary" (click)="addRecord()">{{action}}</button>
+    </mat-dialog-actions>    -->

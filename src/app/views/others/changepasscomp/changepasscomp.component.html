@@ -1,0 +1,87 @@
+<div fxLayoutAlign="center center" fxFill class="auth-div">
+  <mat-card fxFlex="35" class="mat-elevation-z0">
+    <mat-card-header>
+      <mat-card-title style="color: white">Change Password</mat-card-title>
+    </mat-card-header>
+
+    <form
+      fxLayoutAlign="stretch"
+      fxLayout="column"
+      class="auth-form"
+      [formGroup]="changePassForm"
+    >
+      <mat-label>Current Password</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <input
+          appDisableCopyPaste
+          matInput
+          maxlength="50"
+          formControlName="password"
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-label>New Password</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <input
+          appDisableCopyPaste
+          matInput
+          maxlength="50"
+          [type]="newPasswordHide ? 'password' : 'text'"
+          formControlName="newpassword"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="newPasswordHide = !newPasswordHide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="newPasswordHide"
+        >
+          <mat-icon>{{
+            newPasswordHide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-label>Confirm Password</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <input
+          appDisableCopyPaste
+          matInput
+          maxlength="50"
+          [type]="confirmPasswordHide ? 'password' : 'text'"
+          formControlName="confirmpassword"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="confirmPasswordHide = !confirmPasswordHide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="confirmPasswordHide"
+        >
+          <mat-icon>{{
+            confirmPasswordHide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div align="center">
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          (click)="postChangePasswordData()"
+        >
+          Change Password
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

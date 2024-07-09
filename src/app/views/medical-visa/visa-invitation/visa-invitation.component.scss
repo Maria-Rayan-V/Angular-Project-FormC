@@ -1,0 +1,151 @@
+.mat-stepper-horizontal {
+  padding: 5%;
+}
+table {
+  width: 100%;
+  border: none;
+}
+.mat-form-field {
+  margin-top: 16px;
+}
+::ng-deep .mat-horizontal-stepper-header {
+  pointer-events: none !important;
+}
+/* .formc-stepper{
+
+      border: 0px solid rgb(17, 64, 113);;
+    }
+  mat-stepper{
+    border: 0px solid rgb(17, 64, 113);
+
+  } */
+
+p {
+  font-weight: bold;
+  font-size: larger;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+.radio-class {
+  width: 300px;
+}
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.line {
+  flex: 1;
+}
+
+.text {
+  font-weight: 500;
+  font-size: large;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+mat-label {
+  font-size: 15px;
+
+  letter-spacing: 0vmax;
+}
+
+mat-form-filed {
+  display: inline;
+}
+
+.radio-class {
+  width: 300px;
+}
+
+.hotelinfo-form {
+  padding: 2%;
+  // background-color: rgb(242, 242, 242);
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: white;
+  border-radius: 5px;
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.5em 0px !important;
+}
+tr {
+  text-align: justify;
+  border: white;
+}
+// table {
+//   width: 70%;
+
+// }
+.example-container {
+  height: 380px;
+  max-width: 100%;
+  overflow: auto;
+  padding-left: 20pt;
+  padding-right: 20pt;
+  align-items: center;
+}
+// th, td { border: 1px solid black;
+// padding-left: 10%;
+// }
+// td{
+//   color: #3873d4;
+//   font-size: large;
+// }
+// h1{
+//   padding-left: 150px;
+// }
+.tdc {
+  color: rgb(0, 162, 255);
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 800;
+}
+
+.imgs {
+  border-block-color: black;
+  //  text-align: center;
+  width: 60pt;
+  height: 72pt;
+}
+
+/* Styles for the active tab label */
+:host ::ng-deep.mat-tab-label.mat-tab-label-active {
+  // background-color: transparent;
+  color: rgb(5, 241, 96);
+  background-color: rgba(170, 178, 180, 0.732);
+  border-right: 2px solid rgb(0, 0, 0);
+  border-bottom: 3px solid rgba(42, 114, 35, 0.822);
+}
+/* Styles for the active tab label */
+:host ::ng-deep.mat-tab-label {
+  background-color: transparent;
+  background-color: rgba(203, 196, 196, 0.586);
+}
+:host ::ng-deep .mat-tab-body-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+:host ::ng-deep .mat-tab-labels {
+  flex-direction: column;
+  text-align: left;
+}
+
+mat-tab-group {
+  flex-direction: row;
+}
+
+:host ::ng-deep .mat-tab-label {
+  padding: 3px !important; // adjust this to whatever padding you need
+  justify-content: left !important;
+}
+
+//font
+::ng-deep .mat-tab-label .mat-tab-label-content {
+  font-size: medium;
+}

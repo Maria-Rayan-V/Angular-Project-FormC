@@ -1,0 +1,59 @@
+<mat-dialog-content [formGroup]="existingDataSearch">
+  <mat-toolbar> Search Existing Form C </mat-toolbar>
+  <button class="close" mat-icon-button color="warn" (click)="dialogClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <div class="example-button-container" align="end">
+    <button style="background-color: beige" mat-fab (click)="openDialog()">
+      <mat-icon>scanner</mat-icon>
+    </button>
+  </div>
+  <div class="example-button-container" align="end">
+    <h3>QR scanner</h3>
+  </div>
+
+  <mat-label>Passport Number </mat-label>
+  <mat-form-field class="full-width" floatLabel="always" appearance="outline">
+    <input
+      oninput="this.value = this.value.toUpperCase()"
+      matInput
+      formControlName="getPptnotosearch"
+      maxlength="20"
+    />
+    <!-- <mat-error *ngIf="existingDataSearch.get('getPptnotosearch').hasError('required')">Required</mat-error> -->
+    <mat-error
+      *ngIf="existingDataSearch.get('getPptnotosearch').hasError('pattern')"
+      >Only Alphabets And Numbers Allowed</mat-error
+    >
+  </mat-form-field>
+  <mat-label>Nationality </mat-label>
+  <mat-form-field class="full-width" floatLabel="always" appearance="outline">
+    <mat-select formControlName="getNationalitytosearch">
+      <mat-option
+        *ngFor="let country of countries"
+        [value]="country.country_code"
+      >
+        {{ country.country_name }}
+      </mat-option>
+    </mat-select>
+    <!-- <mat-error *ngIf="existingDataSearch.get('getNationalitytosearch').hasError('required')">Required</mat-error> -->
+  </mat-form-field>
+
+  <!-- <mat-form-field >
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender" placeholder="Gender">
+          <mat-option value="F">Female</mat-option>
+          <mat-option value="M">Male</mat-option>
+          <mat-option value="X">Transgender</mat-option>
+        </mat-select>
+        <mat-error *ngIf="existingDataSearch.get('gender').hasError('required')">Required</mat-error>
+      </mat-form-field> -->
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <!-- <button class="mat-raised-button mat-primary"(click)="openDialog()">Scan QR</button>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <p>OR</p>&nbsp;&nbsp;&nbsp;&nbsp; -->
+  <button class="mat-raised-button mat-primary" (click)="save()">Search</button>
+</mat-dialog-actions>

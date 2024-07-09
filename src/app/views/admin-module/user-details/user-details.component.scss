@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+}
+.readonly-wrapper {
+  cursor: not-allowed;
+}
+
+.readonly-wrapper .readonly-block {
+  pointer-events: none;
+}
+
+.text {
+  font-weight: 500;
+  font-size: large;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.line {
+  flex: 1;
+}

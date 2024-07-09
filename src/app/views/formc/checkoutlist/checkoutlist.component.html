@@ -1,0 +1,52 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.given_name }} {{ element.surname }}
+      </td>
+    </ng-container>
+
+    <!-- country Column -->
+    <ng-container matColumnDef="country_outside_india_desc">
+      <th mat-header-cell *matHeaderCellDef>Country</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.country_outside_india_desc }}
+      </td>
+    </ng-container>
+
+    <!-- pptno Column -->
+    <ng-container matColumnDef="passnum">
+      <th mat-header-cell *matHeaderCellDef>Passport Number</th>
+      <td mat-cell *matCellDef="let element">{{ element.passnum }}</td>
+    </ng-container>
+    <!-- dob Column -->
+    <ng-container matColumnDef="dob">
+      <th mat-header-cell *matHeaderCellDef>DOB</th>
+      <td mat-cell *matCellDef="let element">{{ element.dob }}</td>
+    </ng-container>
+    <ng-container matColumnDef="getdetails">
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary">Edit</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [length]="length"
+    [pageSize]="5"
+    [showFirstLastButtons]="showFirstLastButtons"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="pageIndex"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator> -->
+</div>

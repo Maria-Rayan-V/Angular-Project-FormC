@@ -1,0 +1,186 @@
+<mat-dialog-content style="height: 100%">
+  <button class="close" mat-icon-button color="warn" (click)="dialogClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-toolbar mat-dialog-title> {{ action }} Owner Details </mat-toolbar>
+
+  <br />
+  <form [formGroup]="ownerDetailsForm" *ngIf="action == 'Add'">
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label>Owner Name </mat-label>
+          <input
+            oninput="this.value = this.value.toUpperCase()"
+            matInput
+            formControlName="name"
+            maxlength="50"
+          />
+          <mat-error *ngIf="ownerDetailsForm.get('name').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error *ngIf="ownerDetailsForm.get('name').hasError('pattern')"
+            >Only alphabets and space allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label>Address </mat-label>
+          <input
+            matInput
+            oninput="this.value = this.value.toUpperCase()"
+            formControlName="address"
+            maxlength="150"
+          />
+          <mat-error
+            *ngIf="ownerDetailsForm.get('address').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error *ngIf="ownerDetailsForm.get('address').hasError('pattern')"
+            >Only Alphabets,Numbers - / , # : . () are allowed</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label> State </mat-label>
+          <mat-select
+            matInput
+            formControlName="state"
+            (selectionChange)="onChangeState($event)"
+          >
+            <mat-option *ngFor="let state of states" [value]="state.stateCode">
+              {{ state.ststeName }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="ownerDetailsForm.get('state').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label> City </mat-label>
+          <mat-select matInput formControlName="city">
+            <mat-option
+              *ngFor="let district of districts"
+              [value]="district.districtCode"
+            >
+              {{ district.districtName }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="ownerDetailsForm.get('city').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label>Mobile Number </mat-label>
+          <input
+            oninput="this.value = this.value.toUpperCase()"
+            matInput
+            formControlName="mobile"
+            maxlength="50"
+          />
+          <mat-error *ngIf="ownerDetailsForm.get('mobile').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error *ngIf="ownerDetailsForm.get('mobile').hasError('pattern')"
+            >Only numbers allowed</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label>Phone Number </mat-label>
+          <input
+            oninput="this.value = this.value.toUpperCase()"
+            matInput
+            formControlName="phoneNum"
+            maxlength="50"
+          />
+          <mat-error
+            *ngIf="ownerDetailsForm.get('phoneNum').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error
+            *ngIf="ownerDetailsForm.get('phoneNum').hasError('pattern')"
+            >Only numbers allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field
+          floatLabel="always"
+          appearance="standard"
+          class="full-width"
+        >
+          <mat-label>Email Id </mat-label>
+          <input matInput formControlName="emailId" maxlength="50" />
+          <mat-error
+            *ngIf="ownerDetailsForm.get('emailId').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error *ngIf="ownerDetailsForm.get('emailId').hasError('pattern')"
+            >Enter Valid Email Id
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="action == 'Delete'">
+    <h2>Do you want to delete the record ?</h2>
+    <p>Name: {{ data.name }}</p>
+    <p>Address: {{ data.address }}</p>
+    <p>State: {{ data.stateDesc }}</p>
+    <p>City: {{ data.cityDesc }}</p>
+    <p>Email: {{ data.emailId }}</p>
+  </div>
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" (click)="dialogClose()">Close</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <button mat-raised-button color="primary" (click)="addRecord()">
+    {{ action }}
+  </button>
+</div>
+<!-- <mat-dialog-actions align="end">
+        <button class="mat-raised-button " style="color: warn;"  (click)="dialogClose()">Close</button>    &nbsp;
+        <button class="mat-raised-button " color="primary" (click)="addRecord()">{{action}}</button>
+    </mat-dialog-actions>    -->

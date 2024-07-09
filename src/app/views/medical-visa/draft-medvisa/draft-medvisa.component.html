@@ -1,0 +1,56 @@
+<div class="row" style="justify-content: end">
+  <button
+    class="blink-animation"
+    (click)="goToMedvisaInv()"
+    mat-raised-button
+    color="primary"
+  >
+    Visa Invitation
+  </button>
+  &nbsp; &nbsp;&nbsp; &nbsp;
+  <!-- <button class="blink-animation"  (click)="openDialog()" mat-raised-button color="primary" >Visa Invitation Extension</button>  &nbsp;  &nbsp;  &nbsp; -->
+</div>
+
+<br />
+<div class="row">
+  <div class="col-md-12">
+    <mat-tab-group
+      style="padding: 10px"
+      mat-stretch-tabs
+      class="example-stretched-tabs mat-elevation-z4"
+    >
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <!-- <span class="material-icons">pending</span> -->
+          Draft
+        </ng-template>
+        <formc-custom-table
+          [tabledata]="pendingMedvisaDetails"
+          [displayedColumns]="draftColumns"
+        ></formc-custom-table>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <!-- <span class="material-icons">pending</span> -->
+          Submitted
+        </ng-template>
+        <formc-custom-table
+          [tabledata]="submittedMedvisaDetails"
+          [displayedColumns]="submittedColumns"
+        ></formc-custom-table>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <!-- <span class="material-icons">pending</span> -->
+          Medvisa Extension
+        </ng-template>
+        <formc-custom-table
+          [tabledata]="medvisaExtnDetails"
+          [displayedColumns]="extnColumns"
+        ></formc-custom-table>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

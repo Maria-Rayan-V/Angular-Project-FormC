@@ -1,0 +1,142 @@
+<div class="bg-image"></div>
+
+<div class="bg-text">
+    
+  <br>
+  <img  src="assets/FormCImages/emblem.png" class="center" alt="Cinque Terre"  height="200">
+  <br>
+ 
+  <br>
+  <br>
+  <br>
+  <h2 style="text-align: justify;">Any Hotel/ Guest House/ Dharmashala/Individual House/ University/ Hospital/ Institute/ Others etc. who provide accommodation to foreigners must submit the details of the residing foreigner in Form C to the Registration authorities within 24 hours of the arrival of the foreigner at their premises. This will help the registration authorities in locating and tracking the foreigners. This document provides the functionality of registration process of Hotel/ Guest House/ Dharmashala/Individual House / University/  Hospital/ Institute/ Others etc. owners for Form-C.</h2>
+
+</div>
+
+<!-- <div id="layoutSidenav_content">
+  <main class="p-4">
+    <h3>Dashboard</h3>
+    <div class="row">
+      <div class="col-xl-3 col-md-6">
+        <div class="card bg-primary text-white mb-4">
+          <div class="card-body">Primary Card</div>
+          <div class="card-footer d-flex align-items-center justify-content-between"> <a
+              class="small text-white stretched-link" href="#">View Details</a>
+            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card bg-warning text-white mb-4">
+          <div class="card-body">Warning Card</div>
+          <div class="card-footer d-flex align-items-center justify-content-between"> <a
+              class="small text-white stretched-link" href="#">View Details</a>
+            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card bg-success text-white mb-4">
+          <div class="card-body">Success Card</div>
+          <div class="card-footer d-flex align-items-center justify-content-between"> <a
+              class="small text-white stretched-link" href="#">View Details</a>
+            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card bg-danger text-white mb-4">
+          <div class="card-body">Danger Card</div>
+          <div class="card-footer d-flex align-items-center justify-content-between"> <a
+              class="small text-white stretched-link" href="#">View Details</a>
+            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</div> -->
+<!-- <div class="main-content" *ngIf="isFormCApplnFound">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">description</i>
+                      </div>
+                      <p style="font-size: large;color: black;" class="card-category">Total Form C</p>
+                      <h3 class="card-title">{{totalFormC}}</h3>
+                  </div>
+                  <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">help</i> Total Form C Applications
+                    </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">check_circle</i>
+                      </div>
+                      <p style="font-size: large;color: black;" class="card-category">Submitted</p>
+                      <h3 class="card-title">{{SubmittedFormC}} / {{totalFormC}}</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">help_outline</i> Submitted Form C / Total Form C
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-danger card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">info_outline</i>
+                      </div>
+                      <p style="font-size: large;color: black;" class="card-category">Pending</p>
+                      <h3 class="card-title">{{pendingFormC}} / {{totalFormC}}</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">help</i> Pending Form c / Total Form C
+                      </div>
+                  </div>
+              </div>
+          </div>
+              <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-info card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">exit_to_app</i>
+                      </div>
+                      <p style="font-size: large;color: black;" class="card-category">Checkout Made</p>
+                      <h3 class="card-title">{{checkOutFormC}} / {{SubmittedFormC}}</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">help_outline</i> Checkout Made / Submitted Form C
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+     
+  </div>
+</div>
+<br>
+<ng-container *ngIf="isFormCApplnFound">
+
+  <div class="chartContainer">
+    <apx-chart   [series]="chartSeries" [chart]="chartDetails" [labels]="chartLabels" [title]="chartTitle" [dataLabels]="chartDataLabels"></apx-chart>
+  </div>
+</ng-container>
+
+
+<ng-container class="centerCtnt" *ngIf="isFormCApplnFound==false">
+  <h6 style="text-align: center;font-size: larger;font-size: 35px;">No Form C Applications Found</h6>
+</ng-container> -->

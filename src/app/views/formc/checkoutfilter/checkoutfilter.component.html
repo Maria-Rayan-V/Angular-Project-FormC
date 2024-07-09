@@ -1,0 +1,77 @@
+<div fxLayoutAlign="center center" fxFill class="auth-div">
+  <mat-card class="mat-elevation-z0">
+    <mat-card-header>
+      <mat-card-title style="color: white"
+        >Generate Form C Summary Form C Data fed during</mat-card-title
+      >
+    </mat-card-header>
+
+    <form
+      fxLayoutAlign="stretch"
+      fxLayout="column"
+      class="auth-form"
+      [formGroup]="checkOutFilterForm"
+      (ngSubmit)="postAuthData()"
+    >
+      <mat-label>Nationality</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-select formControlName="nationality" placeholder="Nationality">
+          <mat-option
+            *ngFor="let country of countries"
+            [value]="country.country_code"
+          >
+            {{ country.country_name }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="checkOutFilterForm.get('nationality').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+      <mat-label>Passport Number</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <input
+          matInput
+          placeholder="Passport Number"
+          formControlName="pptNum"
+        />
+      </mat-form-field>
+      <mat-label>Date Of Arrival In Hotel</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="arridatehotel"
+          formControlName="dateOfArrival"
+          placeholder="Date Of Arrival"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="arridatehotel"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #arridatehotel></mat-datepicker>
+      </mat-form-field>
+      <mat-label>Application Id</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <input
+          matInput
+          placeholder="Application Id"
+          formControlName="applicationId"
+        />
+      </mat-form-field>
+      <mat-label>Visa Number</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <input matInput formControlName="visaNum" placeholder="Visa Number" />
+      </mat-form-field>
+      <div align="center">
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          (click)="loginSubmit()"
+        >
+          Filter
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

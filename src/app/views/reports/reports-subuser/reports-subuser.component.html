@@ -1,0 +1,68 @@
+<div fxLayoutAlign="center center" fxFill class="auth-div">
+  <mat-card class="mat-elevation-z0">
+    <form fxLayout="column" class="auth-form" [formGroup]="reportsSubusrForm">
+      &nbsp;
+      <p>Date range should be within 30 days</p>
+
+      <br />
+      <mat-label>From</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="fromdate"
+          formControlName="from_date"
+          [max]="maxDate"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="fromdate"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #fromdate></mat-datepicker>
+        <mat-error
+          *ngIf="reportsSubusrForm.get('from_date').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-label>To</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="todate"
+          formControlName="to_date"
+          [max]="reportsSubusrForm.get('from_date').value && maxDate"
+          [min]="reportsSubusrForm.get('from_date').value"
+        />
+        <mat-datepicker-toggle matSuffix [for]="todate"></mat-datepicker-toggle>
+        <mat-datepicker #todate></mat-datepicker>
+        <mat-error *ngIf="reportsSubusrForm.get('to_date').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-label class="asterix--before"> Userid </mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-select matInput formControlName="entered_by">
+          <mat-option *ngFor="let subuser of subusers" [value]="subuser">
+            {{ subuser }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="reportsSubusrForm.get('entered_by').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+
+      <div align="center">
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          (click)="postSummaryData()"
+        >
+          Generate
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

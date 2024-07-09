@@ -1,0 +1,99 @@
+<div class="page-wrap height-100 beige">
+  <div class="session-form-hold">
+    <mat-progress-bar
+      mode="determinate"
+      class="session-progress"
+    ></mat-progress-bar>
+    <mat-card>
+      <mat-card-content>
+        <div class="text-center pt-8 pb-16">
+          <img
+            width="60px"
+            src="assets/images/usrAct.png"
+            alt=""
+            class="mb-05"
+          />
+          <p class="text-muted m-0">User Activation</p>
+        </div>
+
+        <form [formGroup]="signinForm" class="signup4-form">
+          <mat-label>Username</mat-label>
+
+          <input
+            (blur)="formCSignin()"
+            formControlName="userId"
+            class="form-control"
+          />
+          <br />
+          <mat-label>Captcha</mat-label>
+          <input
+            (focusout)="checkCaptchaGn()"
+            oninput="this.value = this.value.toUpperCase()"
+            class="form-control"
+            formControlName="captcha"
+            type="text"
+            name="captcha"
+          />
+
+          <br />
+          <div class="row" *ngIf="previewCaptcha != null">
+            <div class="col-md-6"><img [src]="previewCaptcha" /></div>
+            <div class="col-md-6">
+              <button
+                (click)="refreshFormCCaptcha()"
+                mat-icon-button
+                matTooltip="Refresh Captcha"
+                color="primary"
+              >
+                <mat-icon>refresh</mat-icon>
+              </button>
+            </div>
+          </div>
+          <mat-label class="asterix--before">OTP sent in mobile </mat-label>
+          <div class="row">
+            <div class="col-md-10">
+              <input
+                [required]="otpSentinmbl"
+                formcInputuppercase
+                maxlength="4"
+                oninput="this.value = this.value.toUpperCase()"
+                class="form-control"
+                formControlName="mobile_otp"
+                [type]="mblOtpHide ? 'password' : 'text'"
+              />
+            </div>
+            <div class="col-md-2">
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="mblOtpHide = !mblOtpHide"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="mblOtpHide"
+              >
+                <mat-icon>{{
+                  mblOtpHide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+            </div>
+          </div>
+          <p style="color: green">Enter OTP sent in {{ this.encodedMbl }}</p>
+        </form>
+
+        <div class="row">
+          <div class="col-md-9"></div>
+
+          <div class="col-md-3">
+            <button
+              mat-raised-button
+              (click)="navToUpdPswd()"
+              loadingText="Signing in..."
+              class="d-grid btn btn-main"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

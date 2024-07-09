@@ -1,0 +1,256 @@
+<!--
+<mat-dialog-content [formGroup]="checkOutForm" >
+  <button class="close" mat-icon-button color="warn" (click)="dialogClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+    <mat-toolbar >
+
+       Checkout    (Application Id: {{applicationIdToCheckOut}})
+        </mat-toolbar>
+
+
+        <br><br>
+        <div class="row">
+            <div class="col-md-4">
+              Name:  <span class="displaySpan">{{fullData.given_name}}</span>
+            </div>
+            <div class="col-md-4">Nationality:  <span class="displaySpan">{{fullData.nationality}}</span></div>
+            <div class="col-md-4">DOB:  <span class="displaySpan">{{fullData.dob}}</span></div>
+        </div>
+         <br>
+        <mat-form-field  class="full-width" formcDateFormat floatLabel="always">
+            <mat-label>Date Of Departure</mat-label>
+          <input readonly matInput oninput="this.value = this.value.toUpperCase()" [matDatepicker]="dod" formControlName="date_of_departure" >
+          <mat-datepicker-toggle matSuffix [for]="dod"></mat-datepicker-toggle>
+          <mat-datepicker #dod ></mat-datepicker>
+          <mat-error *ngIf="checkOutForm.get('date_of_departure').hasError('required')">Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field  class="full-width" floatLabel="always">
+            <mat-label>Time Of Departure</mat-label>
+          <input readonly matInput oninput="this.value = this.value.toUpperCase()"  [format]="24" [ngxMatTimepicker]="picker"  formControlName="time_of_departure" mode="24h"
+            name="time" (timeChange)="timeChangeHandler($event)">
+          <ngx-mat-timepicker #picker></ngx-mat-timepicker>
+          <mat-error *ngIf="checkOutForm.get('time_of_departure').hasError('required')">Required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" floatLabel="always">
+            <mat-label>Remarks If Any </mat-label>
+            <input oninput="this.value = this.value.toUpperCase()" matInput formControlName="departure_remark" maxlength="50">
+            <mat-error *ngIf="checkOutForm.get('departure_remark').hasError('required')">Required</mat-error>
+            <mat-error *ngIf="checkOutForm.get('departure_remark').hasError('pattern')">Only Alphabets And Numbers
+              Allowed</mat-error>
+          </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions  align="center">
+
+        <button class="mat-raised-button mat-primary" (click)="postCheckout()">Checkout</button>
+    </mat-dialog-actions> -->
+
+<div>
+  <div class="d-flex">
+    <div class="text-center text-primary w-100">
+      <h1>Checkout Entry</h1>
+    </div>
+    <div class="flex-shrink-1 p-2">
+      <button type="button" class="btn btn-danger" (click)="dialogClose()">
+        X
+      </button>
+    </div>
+  </div>
+
+  <div
+    style="background-color: rgb(238, 238, 238)"
+    class="border border-secondary rounded d-flex"
+  >
+    <!-- form -->
+    <div class="align-self-sm-center p-4">
+      <div class="table-responsive-lg">
+        <table
+          class="table table-striped"
+          #table
+          mat-table
+          matSort
+          [dataSource]="tableDataSource"
+        >
+          <ng-container matColumnDef="arridateind">
+            <th
+              class="bg-secondary h6 text-white"
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              Date of arrival in india
+            </th>
+            <td *matCellDef="let row">{{ row.arridateind }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="arridatehotel">
+            <th
+              class="bg-secondary h6 text-white"
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              Date of arrival in hotel
+            </th>
+            <td *matCellDef="let row">{{ row.arridatehotel }}</td>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="arritimehotel">
+          <th class="bg-secondary h6 text-white"
+              *matHeaderCellDef mat-sort-header>Time</th>
+          <td *matCellDef="let row">{{ row.arritimehotel }}</td>
+      </ng-container> -->
+          <ng-container matColumnDef="durationofstay">
+            <th
+              class="bg-secondary h6 text-white"
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              Duration of stay
+            </th>
+            <td *matCellDef="let row">{{ row.durationofstay }} days</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="ArrivalCols"></tr>
+          <tr mat-row *matRowDef="let row; columns: ArrivalCols"></tr>
+          <tr class="mat-row" *matNoDataRow>
+            <td style="text-align: center; font-size: larger" colspan="13">
+              NO RECORDS FOUND!
+            </td>
+          </tr>
+        </table>
+      </div>
+      <form [formGroup]="checkOutForm">
+        <mat-form-field class="full-width" formcDateFormat floatLabel="always">
+          <mat-label>Date Of Departure</mat-label>
+          <input
+            readonly
+            matInput
+            oninput="this.value = this.value.toUpperCase()"
+            [min]="arrivalDate"
+            [matDatepicker]="dod"
+            formControlName="date_of_departure"
+          />
+          <mat-datepicker-toggle matSuffix [for]="dod"></mat-datepicker-toggle>
+          <mat-datepicker #dod></mat-datepicker>
+          <mat-error
+            *ngIf="checkOutForm.get('date_of_departure').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="full-width" floatLabel="always">
+          <mat-label>Time Of Departure</mat-label>
+          <input
+            readonly
+            matInput
+            oninput="this.value = this.value.toUpperCase()"
+            [format]="24"
+            [ngxMatTimepicker]="picker"
+            formControlName="time_of_departure"
+            mode="24h"
+            name="time"
+            (timeChange)="timeChangeHandler($event)"
+          />
+          <ngx-mat-timepicker #picker></ngx-mat-timepicker>
+          <mat-error
+            *ngIf="checkOutForm.get('time_of_departure').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="full-width" floatLabel="always">
+          <mat-label>Remarks If Any </mat-label>
+          <input
+            oninput="this.value = this.value.toUpperCase()"
+            matInput
+            formControlName="departure_remark"
+            maxlength="50"
+          />
+          <mat-error
+            *ngIf="checkOutForm.get('departure_remark').hasError('required')"
+            >Required</mat-error
+          >
+          <mat-error
+            *ngIf="checkOutForm.get('departure_remark').hasError('pattern')"
+            >Only Alphabets And Numbers Allowed</mat-error
+          >
+        </mat-form-field>
+      </form>
+      <!-- ok or cancel -->
+      <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="dialogClose()"
+          mat-dialog-close
+        >
+          Cancel</button
+        >&nbsp; &nbsp;
+        <button mat-raised-button (click)="postCheckout()" color="primary">
+          Submit
+        </button>
+      </div>
+    </div>
+    <!-- tabel -->
+    <div
+      style="background-color: rgb(255, 255, 255)"
+      class="ml-auto m-2 p-2 rounded"
+    >
+      <div class="container">
+        <div class="line">
+          <mat-divider></mat-divider>
+        </div>
+        <div class="text mat-typography text-warning">
+          <h3>Applicant Details</h3>
+        </div>
+        <div class="line">
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+
+      <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <img class="imgs" [src]="imageSource" />
+      </div>
+      <br />
+      <table>
+        <tr>
+          <th>FORMC ID</th>
+          <td class="text-primary font-weight-bold">
+            {{ applicationIdToCheckOut }}
+          </td>
+        </tr>
+        <tr>
+          <th>NAME</th>
+          <td class="text-primary font-weight-bold">
+            {{ this.formcApplicantdetails[0].name }}
+            {{ this.formcApplicantdetails[0].surname }}
+          </td>
+        </tr>
+
+        <tr>
+          <th>PASSPORT NO.</th>
+          <td class="text-primary font-weight-bold">
+            {{ this.formcApplicantdetails[0].passnum }}
+          </td>
+        </tr>
+        <tr>
+          <th>NATIONALITY</th>
+          <td class="text-primary font-weight-bold">
+            {{ this.formcApplicantdetails[0].nationalityDesc }}
+          </td>
+        </tr>
+        <tr>
+          <th>DOB</th>
+          <td class="text-primary font-weight-bold">
+            {{ this.formcApplicantdetails[0].dob }}
+          </td>
+        </tr>
+      </table>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <!-- <button type="button" (click)="viewDetails()"
+        class="btn btn-outline-info">
+        View Existing Entry
+      </button> -->
+      </div>
+    </div>
+  </div>
+</div>

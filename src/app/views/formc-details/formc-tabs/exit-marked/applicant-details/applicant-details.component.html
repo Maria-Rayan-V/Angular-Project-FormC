@@ -1,0 +1,762 @@
+<!-- <mat-dialog-content>
+    <button class="close" mat-icon-button color="warn" (click)="dialogClose()">
+        <mat-icon>close</mat-icon>
+      </button>
+     <div align="center">
+
+  <h1 style="padding-left: 7%;">APPLICANT DETAILS </h1>
+
+
+     </div>
+
+
+
+     <br>
+          <div align="center"><img class="avatar " height="150px"  [src]="imageSource"  /></div>
+          <div align="start">
+              <h1>Personal Details</h1>
+          </div>
+        <table class="table">
+
+            <tr>
+                <th> Form C Id </th>
+                <td> {{formcApplicantdetails[0].form_c_appl_id}} </td>
+            </tr>
+            <tr>
+                <th> Name </th>
+                <td> {{formcApplicantdetails[0].name}}  {{formcApplicantdetails[0].surname}} </td>
+            </tr>
+            <tr>
+                <th> Gender </th>
+                <td> {{formcApplicantdetails[0].genderDesc}}  </td>
+            </tr>
+            <tr>
+                <th> DOB </th>
+                <td> {{formcApplicantdetails[0].dob}}  </td>
+            </tr>
+            <tr>
+                <th> Nationality </th>
+                <td> {{formcApplicantdetails[0].nationalityDesc}}  </td>
+            </tr>
+            <tr>
+                <th> Address </th>
+                <td> {{formcApplicantdetails[0].addroutind}}  </td>
+            </tr>
+            <tr>
+                <th> City </th>
+                <td> {{formcApplicantdetails[0].cityoutind}}  </td>
+            </tr>
+            <tr>
+                <th> Country </th>
+                <td> {{formcApplicantdetails[0].counoutindDesc}}  </td>
+            </tr>
+
+        </table>
+        <div align="start">
+            <h1>Passport, Visa Details</h1>
+        </div>
+        <table class="table">
+            <tr>
+                <th> Passport Number </th>
+                <td> {{formcApplicantdetails[0].passnum}}  </td>
+            </tr>
+            <tr>
+                <th> Passport Issed Place</th>
+                <td> {{formcApplicantdetails[0].passplace}}  </td>
+            </tr>
+            <tr>
+                <th> Passport Issed Country</th>
+                <td> {{formcApplicantdetails[0].passcounDesc}}  </td>
+            </tr>
+            <tr>
+                <th> Passport Issed Date</th>
+                <td> {{formcApplicantdetails[0].passdate}}  </td>
+            </tr>
+            <tr>
+                <th> Passport Expiry Date</th>
+                <td> {{formcApplicantdetails[0].passexpdate}}  </td>
+            </tr>
+            <tr>
+                <th>Visa Number</th>
+                <td> {{formcApplicantdetails[0].visanum}}  </td>
+            </tr>
+            <tr>
+                <th>Visa Issued Place</th>
+                <td> {{formcApplicantdetails[0].visaplace}}  </td>
+            </tr>
+            <tr>
+                <th>Visa Issued Country</th>
+                <td> {{formcApplicantdetails[0].visacounDesc}}  </td>
+            </tr>
+            <tr>
+                <th>Visa Issued Date</th>
+                <td> {{formcApplicantdetails[0].visadate}}  </td>
+            </tr>
+            <tr>
+                <th>Visa Expiry Date</th>
+                <td> {{formcApplicantdetails[0].visaexpdate}}  </td>
+            </tr>
+            <tr>
+                <th>Visatype</th>
+                <td> {{formcApplicantdetails[0].visatypeDesc}}  </td>
+            </tr>
+            <tr>
+                <th>Visa Subtype</th>
+                <td> {{formcApplicantdetails[0].visasubtypeDesc}}  </td>
+            </tr>
+        </table>
+        <div align="start">
+            <h1>Arrival Details</h1>
+        </div>
+        <table class="table">
+            <tr>
+                <th> Arrived From Place </th>
+                <td> {{formcApplicantdetails[0].arriplace}}  </td>
+            </tr>
+            <tr>
+                <th>  Arrived From City</th>
+                <td> {{formcApplicantdetails[0].arricit}}  </td>
+            </tr>
+            <tr>
+                <th>Arrived From Country</th>
+                <td> {{formcApplicantdetails[0].arricounDesc}}  </td>
+            </tr>
+            <tr>
+                <th>Arrival Date In India</th>
+                <td> {{formcApplicantdetails[0].arridateind}}  </td>
+            </tr>
+            <tr>
+                <th>Arrival Date In Hotel</th>
+                <td> {{formcApplicantdetails[0].arridatehotel}}  </td>
+            </tr>
+            <tr>
+                <th>Duration Of Stay (In days)</th>
+                <td> {{formcApplicantdetails[0].durationofstay}}  </td>
+            </tr>
+            <tr>
+                <th>Arrival Time</th>
+                <td> {{formcApplicantdetails[0].arritimehotel}}  </td>
+            </tr>
+
+        </table>
+        <div align="start">
+            <h1>Reference, Other Details</h1>
+        </div>
+      <table class="table">
+
+          <tr>
+              <th> Address </th>
+              <td> {{formcApplicantdetails[0].addrofrefinind}} </td>
+          </tr>
+          <tr>
+              <th> State </th>
+              <td> {{formcApplicantdetails[0].stateofrefinindDesc}}   </td>
+          </tr>
+          <tr>
+              <th> City </th>
+              <td> {{formcApplicantdetails[0].cityofrefinindDesc}}  </td>
+          </tr>
+          <tr>
+              <th> Pincode </th>
+              <td> {{formcApplicantdetails[0].pincodeofref}}  </td>
+          </tr>
+          <tr>
+              <th> Mobile Number</th>
+              <td> {{formcApplicantdetails[0].mblnuminind}}  </td>
+          </tr>
+          <tr>
+              <th> Mobile Number Outside India </th>
+              <td> {{formcApplicantdetails[0].mblnum}}  </td>
+          </tr>
+          <tr>
+              <th> Phone Number </th>
+              <td> {{formcApplicantdetails[0].phnnuminind}}  </td>
+          </tr>
+          <tr>
+              <th> Phone Number Outside India </th>
+              <td> {{formcApplicantdetails[0].phnnum}}  </td>
+          </tr>
+          <tr>
+            <th> Employed In India </th>
+            <td> {{formcApplicantdetails[0].employedinind}}  </td>
+        </tr>
+        <tr>
+            <th>Special Category</th>
+            <td> {{formcApplicantdetails[0].splcategorycodeDesc}}  </td>
+        </tr>
+        <tr>
+            <th> Purpose Of Visit </th>
+            <td> {{formcApplicantdetails[0].purposeofvisitDesc}}  </td>
+        </tr>
+
+      </table>
+    </mat-dialog-content>
+   -->
+
+<div class="table-responsive">
+  <div class="d-flex">
+    <div
+      style="color: rgba(0, 51, 121, 0.796)"
+      class="text-center font-weight-bold ext-primary w-100"
+    >
+      <h2>APPLICANT DETAILS</h2>
+    </div>
+    <div class="flex-shrink-1 p-2"></div>
+    <div class="flex-shrink-1 p-3">
+      <button type="button" class="btn btn-danger" (click)="dialogClose()">
+        X
+      </button>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table
+      class="table table-striped table-bordered border-primary align-middle"
+    >
+      <tbody>
+        <tr>
+          <td rowspan="6" class="text-center align-middle col-md-2">
+            <img [src]="imageSource" />
+          </td>
+          <th class="text-nowrap">Application ID</th>
+          <td class="h6 text-bold text-success">
+            {{ this.formcApplicantdetails[0].form_c_appl_id }}
+          </td>
+          <th class="text-nowrap">Name</th>
+          <td class="h6 text-bold tdc">
+            {{ this.formcApplicantdetails[0].name }}
+            {{ this.formcApplicantdetails[0].surname }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">Date of Birth</th>
+          <td class="h6 text-bold tdc">
+            {{ this.formcApplicantdetails[0].dob }}
+          </td>
+          <th class="text-nowrap">Gender</th>
+          <td class="h6 text-bold tdc">
+            {{ this.formcApplicantdetails[0].genderDesc }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">Passport No.</th>
+          <td class="h6 text-bold tdc">
+            {{ this.formcApplicantdetails[0].passnum }}
+          </td>
+          <th class="text-nowrap">Nationality</th>
+          <td class="h6 text-bold tdc">
+            {{ this.formcApplicantdetails[0].nationalityDesc }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">Visa No.</th>
+          <td class="h6 text-bold tdc">
+            {{ this.formcApplicantdetails[0].visanum }}
+          </td>
+          <th class="text-nowrap">Visatype</th>
+          <td class="h6 text-bold tdc">
+            {{ this.formcApplicantdetails[0].visatypeDesc }}
+          </td>
+        </tr>
+
+        <tr>
+          <th class="text-nowrap">Address</th>
+          <td
+            colspan="5"
+            class="h6 text-bold tdc"
+            style="color: rgba(0, 51, 121, 0.796)"
+          >
+            {{ this.formcApplicantdetails[0].addroutind }},
+            {{ this.formcApplicantdetails[0].cityoutind }},
+            {{ this.formcApplicantdetails[0].counoutindDesc }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">Reference Address</th>
+          <td
+            colspan="5"
+            class="h6 text-bold tdc"
+            style="color: rgba(0, 51, 121, 0.796)"
+          >
+            {{ this.formcApplicantdetails[0].addrofrefinind }},
+            {{ this.formcApplicantdetails[0].cityofrefinindDesc }},
+            {{ this.formcApplicantdetails[0].stateofrefinindDesc }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="p-2 border border-success rounded">
+    <div class="p-2 table-responsive">
+      <div
+        style="color: rgba(0, 51, 121, 0.796)"
+        class="text-center font-weight-bold ext-primary w-100"
+      >
+        <h2>Passport Details</h2>
+      </div>
+      <table
+        class="table table-striped"
+        #table
+        mat-table
+        matSort
+        [dataSource]="tableDataSource"
+      >
+        <ng-container matColumnDef="passnum">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Passport No
+          </th>
+          <td *matCellDef="let row">{{ row.passnum }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="passcounDesc">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Country
+          </th>
+          <td *matCellDef="let row">{{ row.passcounDesc }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="passplace">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Place
+          </th>
+          <td *matCellDef="let row">{{ row.passplace }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="passdate">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Issue Date
+          </th>
+          <td *matCellDef="let row">{{ row.passdate }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="passexpdate">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Expiry Date
+          </th>
+          <td *matCellDef="let row">{{ row.passexpdate }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="PassportCols"></tr>
+        <tr mat-row *matRowDef="let row; columns: PassportCols"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td style="text-align: center; font-size: larger" colspan="13">
+            NO RECORDS FOUND!
+          </td>
+        </tr>
+      </table>
+
+      <div
+        style="color: rgba(0, 51, 121, 0.796)"
+        class="text-center font-weight-bold ext-primary w-100"
+      >
+        <h2>Visa Details</h2>
+      </div>
+      <table
+        class="table table-striped"
+        #table
+        mat-table
+        matSort
+        [dataSource]="tableDataSource"
+      >
+        <ng-container matColumnDef="visanum">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Visa Number
+          </th>
+          <td *matCellDef="let row">{{ row.visanum }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="visaplace">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Place of issue
+          </th>
+          <td *matCellDef="let row">{{ row.visaplace }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="visacounDesc">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Country of issue
+          </th>
+          <td *matCellDef="let row">{{ row.visacounDesc }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="visadate">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Date of issue
+          </th>
+          <td *matCellDef="let row">{{ row.visadate }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="visaexpdate">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Expiry Date
+          </th>
+          <td *matCellDef="let row">{{ row.visaexpdate }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="visatypeDesc">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Visatype
+          </th>
+          <td *matCellDef="let row">{{ row.visatypeDesc }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="VisaColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: VisaColumns"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td style="text-align: center; font-size: larger" colspan="13">
+            NO RECORDS FOUND!
+          </td>
+        </tr>
+      </table>
+
+      <div
+        style="color: rgba(0, 51, 121, 0.796)"
+        class="text-center font-weight-bold ext-primary w-100"
+      >
+        <h2>Arrival Details</h2>
+      </div>
+      <table
+        class="table table-striped"
+        #table
+        mat-table
+        matSort
+        [dataSource]="tableDataSource"
+      >
+        <ng-container matColumnDef="arriplace">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Place
+          </th>
+          <td *matCellDef="let row">{{ row.arriplace }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="arricit">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            City
+          </th>
+          <td *matCellDef="let row">{{ row.arricit }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="arricounDesc">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Country
+          </th>
+          <td *matCellDef="let row">{{ row.arricounDesc }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="arridateind">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Date of arrival in India
+          </th>
+          <td *matCellDef="let row">{{ row.arridateind }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="arridatehotel">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Date of arrival in hotel
+          </th>
+          <td *matCellDef="let row">{{ row.arridatehotel }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="arritimehotel">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Time
+          </th>
+          <td *matCellDef="let row">{{ row.arritimehotel }}</td>
+        </ng-container>
+        <ng-container matColumnDef="durationofstay">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Duration of stay
+          </th>
+          <td *matCellDef="let row">{{ row.durationofstay }} days</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="ArrivalCols"></tr>
+        <tr mat-row *matRowDef="let row; columns: ArrivalCols"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td style="text-align: center; font-size: larger" colspan="13">
+            NO RECORDS FOUND!
+          </td>
+        </tr>
+      </table>
+      <div
+        style="color: rgba(0, 51, 121, 0.796)"
+        class="text-center font-weight-bold ext-primary w-100"
+      >
+        <h2>Next Destination Details</h2>
+      </div>
+      <table
+        class="table table-striped"
+        #table
+        mat-table
+        matSort
+        [dataSource]="tableDataSource"
+      >
+        <ng-container matColumnDef="nextdestplaceinind">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Place in India
+          </th>
+          <td *matCellDef="let row">{{ row.nextdestplaceinind }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nextdestdistinindDesc">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            City
+          </th>
+          <td *matCellDef="let row">{{ row.nextdestdistinindDesc }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nextdeststateinindDesc">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            State
+          </th>
+          <td *matCellDef="let row">{{ row.nextdeststateinindDesc }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nextdestplaceoutind">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Place ouside India
+          </th>
+          <td *matCellDef="let row">{{ row.nextdestplaceoutind }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nextdestcityoutind">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            City outside India
+          </th>
+          <td *matCellDef="let row">{{ row.nextdestcityoutind }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nextdestcounoutindDesc">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Country
+          </th>
+          <td *matCellDef="let row">{{ row.nextdestcounoutindDesc }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="NxtDestCols"></tr>
+        <tr mat-row *matRowDef="let row; columns: NxtDestCols"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td style="text-align: center; font-size: larger" colspan="13">
+            NO RECORDS FOUND!
+          </td>
+        </tr>
+      </table>
+      <div
+        style="color: rgba(0, 51, 121, 0.796)"
+        class="text-center font-weight-bold ext-primary w-100"
+      >
+        <h2>Contact Details</h2>
+      </div>
+      <table
+        class="table table-striped"
+        #table
+        mat-table
+        matSort
+        [dataSource]="tableDataSource"
+      >
+        <ng-container matColumnDef="mblnuminind">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Mobile.No in India
+          </th>
+          <td *matCellDef="let row">{{ row.mblnuminind }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="phnnuminind">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Phone.No in India
+          </th>
+          <td *matCellDef="let row">{{ row.phnnuminind }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="mblnum">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Mobile
+          </th>
+          <td *matCellDef="let row">{{ row.mblnum }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="phnnum">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Phone
+          </th>
+          <td *matCellDef="let row">{{ row.phnnum }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="contactCols"></tr>
+        <tr mat-row *matRowDef="let row; columns: contactCols"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td style="text-align: center; font-size: larger" colspan="13">
+            NO RECORDS FOUND!
+          </td>
+        </tr>
+      </table>
+      <div
+        style="color: rgba(0, 51, 121, 0.796)"
+        class="text-center font-weight-bold ext-primary w-100"
+      >
+        <h2>Other Details</h2>
+      </div>
+      <table
+        class="table table-striped"
+        #table
+        mat-table
+        matSort
+        [dataSource]="tableDataSource"
+      >
+        <ng-container matColumnDef="employedinind">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Employed in India
+          </th>
+          <td *matCellDef="let row">
+            {{ row.employedinind == "N" ? "No" : "Yes" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="splcategorycodeDesc">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Special category
+          </th>
+          <td *matCellDef="let row">{{ row.splcategorycodeDesc }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="purposeofvisitDesc">
+          <th
+            class="bg-secondary h6 text-white"
+            *matHeaderCellDef
+            mat-sort-header
+          >
+            Purpose of visit
+          </th>
+          <td *matCellDef="let row">{{ row.purposeofvisitDesc }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="othersCols"></tr>
+        <tr mat-row *matRowDef="let row; columns: othersCols"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td style="text-align: center; font-size: larger" colspan="13">
+            NO RECORDS FOUND!
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

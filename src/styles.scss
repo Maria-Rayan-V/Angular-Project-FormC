@@ -1,0 +1,171 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+::ng-deep .mat-form-field .mat-form-field-wrapper {
+    margin-bottom: -1.75em !important;
+    padding-bottom: 0% !important;
+  }
+
+  .mat-step-header[aria-selected="true"]  {
+    border-top:4px solid #1780c4;
+    border-bottom:0px;
+
+   color: #000;
+    background-color: #f4fbff !important;
+   /* background-color: #f4fbff !important; */
+
+
+}
+.mat-tab-label{
+  font-size: 17px !important;
+  color: black;
+  font-weight: bolder;
+}
+.mat-step-header:hover{
+
+   border-top:4px solid #1780c4;
+   background-color: #f4fbff !important;
+}
+
+.mat-step-header{
+ width:100%;
+  border-top:4px solid #1780c4;
+ background-color: #1780c4 !important;
+ border-left:1px solid white;
+}
+
+.mat-step-header[aria-selected="true"] .mat-step-text-label {
+
+  font-weight:bold;
+ color:#1780c4!important;
+
+
+}
+.mat-step-header:hover .mat-step-text-label{
+ font-weight:bold;
+  color:#1780c4 !important;
+}
+.mat-step-text-label  {
+ /* font-size:large; */
+  font-weight:500;
+  color:white;
+   position: relative;
+}
+.mat-stepper-horizontal{
+  width: 100%;
+}
+.mat-stepper-horizontal .mat-horizontal-stepper-header {
+
+  padding: 10px;
+ text-align: center;
+   height:auto;
+    /* position:fixed ;
+    z-index: 10; */
+}
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: 	rgb(200,200,200) !important;
+}
+.mat-stepper-horizontal .mat-horizontal-content-container {
+padding: 0%;
+}
+ .mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: white;
+  border-radius: 5px;
+
+  }
+  .cdk-overlay-pane.my-dialog {
+    position: relative!important;
+  }
+
+ .mat-form-field-flex > .mat-form-field-infix { padding: 0.5em 0px !important;}
+ /* input{
+   text-transform: uppercase;
+
+ } */
+ @keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner .8s linear infinite;
+}
+
+.blue-snackbar {
+  display: inline-block !important;
+  background-color: #2AAA8A !important;
+  color: white !important;
+  font-size: larger !important;
+  margin: 0 !important;
+  position: absolute;
+  left: 900px;
+  top: 120px;
+  text-align: center;
+  button{
+      color: white !important;
+      font-size: 20px !important;
+      font-weight: 900 !important;
+  }
+}
+
+.mat-tab-label .mat-tab-label-content{
+  font-size: large;
+  color: black;
+  font-weight: bold;
+}
+.asterix--before:after {
+  content: "*";
+  color: red;
+
+}
+.prevNxtbtn{
+  padding-left: 900px;
+}
+.title-center {
+  margin: 0 auto;
+}
+
+.error-snackbar{
+  text-align: center;
+   display: inline-block !important;
+    text-align: center;
+    width: auto;
+    background-color: darkred !important;
+    color: white !important;
+    font-size: larger !important;
+    margin: 0 !important;
+    position: absolute;
+    left: 620px;
+    top: 140px;
+   button{
+       color: yellow !important;
+       font-size: 20px;
+       font-weight: 900;
+   }
+}
+mat-label{
+  font-size: medium;
+  font-weight: 500;
+}
+.mat-tooltip{
+  font-size: larger !important;
+}
+.readonly-wrapper {
+  cursor: not-allowed;
+}
+
+.readonly-wrapper .readonly-block {
+  pointer-events: none;
+}

@@ -1,0 +1,36 @@
+<div fxLayoutAlign="center center" fxFill class="auth-div">
+
+  <mat-card class="mat-elevation-z0">
+
+    <mat-card-header>
+
+      <mat-card-title style="color: white;">Print Form C (Bulk Print)</mat-card-title>
+
+    </mat-card-header>
+
+    <form fxLayoutAlign="stretch" fxLayout="column" class="auth-form" [formGroup]="getDateToPrintForm"
+      (ngSubmit)="postAuthData()">
+      <mat-label>From</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+
+        <input matInput [matDatepicker]="fromdate" formControlName="getFromDate" >
+        <mat-datepicker-toggle matSuffix [for]="fromdate"></mat-datepicker-toggle>
+        <mat-datepicker #fromdate></mat-datepicker>
+      </mat-form-field>
+      <mat-label>To</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+
+        <input matInput [matDatepicker]="todate" formControlName="getToDate" >
+        <mat-datepicker-toggle matSuffix [for]="todate"></mat-datepicker-toggle>
+        <mat-datepicker #todate></mat-datepicker>
+      </mat-form-field>
+
+
+      <div align="center"> <button type="submit" mat-raised-button color="primary"
+          (click)="loginSubmit()">Submit</button></div>
+
+
+
+    </form>
+  </mat-card>
+</div>

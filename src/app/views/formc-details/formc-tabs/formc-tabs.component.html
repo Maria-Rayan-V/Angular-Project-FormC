@@ -1,0 +1,54 @@
+<div align="end">
+  <button
+    class="blink-animation"
+    (click)="openDialog()"
+    mat-raised-button
+    color="primary"
+  >
+    New Entry
+  </button>
+</div>
+<br />
+<div class="row">
+  <div class="col-md-12">
+    <mat-tab-group
+      style="padding: 10px"
+      mat-stretch-tabs
+      class="example-stretched-tabs mat-elevation-z4"
+    >
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <!-- <span class="material-icons">pending</span> -->
+          Draft
+        </ng-template>
+        <formc-custom-table
+          [tabledata]="pendingFormCDetails"
+          [displayedColumns]="draftColumns"
+        ></formc-custom-table>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <!-- <mat-icon class="example-tab-icon">exit_to_app</mat-icon> -->
+          Pending For Checkout
+        </ng-template>
+        <formc-custom-table
+          [tabledata]="checkoutpendingDetails"
+          [displayedColumns]="pendingcheckoutColumns"
+        ></formc-custom-table>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <!-- <mat-icon class="example-tab-icon">check_circle</mat-icon> -->
+          Checkout Marked
+        </ng-template>
+
+        <formc-custom-table
+          [tabledata]="submittedFormCDetails"
+          [displayedColumns]="submittedColumns"
+        ></formc-custom-table>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

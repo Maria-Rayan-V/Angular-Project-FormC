@@ -1,0 +1,40 @@
+<div fxLayoutAlign="center center" fxFill class="auth-div">
+  <mat-card fxFlex="15" class="mat-elevation-z0">
+    <mat-card-header>
+      <mat-card-title style="color: white">Approve User</mat-card-title>
+    </mat-card-header>
+
+    <form
+      fxLayoutAlign="stretch"
+      fxLayout="column"
+      class="auth-form"
+      [formGroup]="approveUsrForm"
+    >
+      <div class="col">
+        <!-- <mat-label>Enter Userid</mat-label> -->
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>Enter Userid</mat-label>
+          <input
+            matInput
+            formcInputuppercase
+            formControlName="userId"
+            maxlength="20"
+          />
+          <mat-error *ngIf="approveUsrForm.get('userId').hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div align="center">
+        <button
+          type="submit"
+          (click)="getUserDts()"
+          mat-raised-button
+          color="primary"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

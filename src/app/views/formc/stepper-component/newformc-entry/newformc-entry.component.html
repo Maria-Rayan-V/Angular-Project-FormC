@@ -1,0 +1,90 @@
+<div fxLayoutAlign="center center" fxFill class="auth-div" style="color: grey">
+  <mat-card class="mat-elevation-z0">
+    <mat-card-header>
+      <mat-card-title style="color: white">
+        Search Existing Form C</mat-card-title
+      >
+    </mat-card-header>
+
+    <form
+      fxLayoutAlign="stretch"
+      (
+      fxLayout="column"
+      class="auth-form"
+      [formGroup]="pendingDataSearch"
+    >
+      <mat-label>Passport Number *</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <!-- <mat-label>Passport Number</mat-label> -->
+        <input
+          matInput
+          formcInputuppercase
+          formControlName="getPptnotosearch"
+          maxlength="20"
+        />
+        <mat-error
+          *ngIf="pendingDataSearch.get('getPptnotosearch').hasError('required')"
+          >Required</mat-error
+        >
+        <mat-error
+          *ngIf="pendingDataSearch.get('getPptnotosearch').hasError('pattern')"
+          >Only Alphabets And Numbers Allowed</mat-error
+        >
+      </mat-form-field>
+      <mat-label>Nationality *</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <!-- <mat-label>Nationality</mat-label> -->
+
+        <mat-select formControlName="getNationalitytosearch">
+          <mat-option
+            *ngFor="let country of countries"
+            [value]="country.country_code"
+          >
+            {{ country.country_name }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            pendingDataSearch.get('getNationalitytosearch').hasError('required')
+          "
+          >Required</mat-error
+        >
+      </mat-form-field>
+      <mat-label>Gender</mat-label>
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-select formControlName="gender">
+          <mat-option value="F">Female</mat-option>
+          <mat-option value="M">Male</mat-option>
+          <mat-option value="X">Transgender</mat-option>
+        </mat-select>
+        <mat-error *ngIf="pendingDataSearch.get('gender').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+      <!-- <mat-label>Gender</mat-label>
+          <mat-form-field floatLabel="always" appearance="outline">   -->
+      <!-- <mat-label>Gender</mat-label> -->
+      <!-- <mat-select formControlName="gender" placeholder="Gender">
+              <mat-option value="F">Female</mat-option>
+              <mat-option value="M">Male</mat-option>
+              <mat-option value="X">Transgender</mat-option>
+            </mat-select>
+            <mat-error *ngIf="pendingDataSearch.get('gender').hasError('required')">Required</mat-error>
+          </mat-form-field> -->
+      <div align="center">
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          (click)="postSearchData()"
+        >
+          Search
+        </button>
+      </div>
+
+      <!-- <h3 align="center">or</h3> -->
+    </form>
+    <!-- <div align="center"> <button type="submit" mat-raised-button color="primary"
+        (click)="searchFormC()">New Form C Entry</button></div> -->
+  </mat-card>
+</div>

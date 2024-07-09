@@ -1,0 +1,180 @@
+<div fxLayout="column" fxLayout.lt-sm="row" class="personal-form">
+  
+  <form [formGroup]="personalDetailsForm" >
+    <ng-template matStepLabel>outline out your name</ng-template>
+    <!-- <div class="photoUploadField"><mat-file-upload
+      [labelText]="'Upload Your Photo'"
+      [selectButtonText]="'Select file'"
+      [uploadButtonText]="'Upload'"
+      [allowMultipleFiles]="false"
+      [showUploadButton]="true"
+      [customSvgIcon]="null"
+      [acceptedTypes]="'.jpg,.jpeg,.JPG,.JPEG '"
+      
+      (uploadClicked)="onUploadClicked($event)" 
+      (selectedFilesChanged)="onSelectedFilesChanged($event)"
+      >
+    </mat-file-upload></div>   -->
+    <br>
+    <!-- <mat-form-field floatLabel="always">
+        <mat-label>Given Name</mat-label>
+  
+        <input formcInputuppercase matInput formControlName="name" placeholder="Given Name" maxlength="50">
+        <mat-error *ngIf="personalDetailsForm.get('name').hasError('required')">Required</mat-error>
+        <mat-error *ngIf="personalDetailsForm.get('name').hasError('pattern')">Only alphabets and space allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field floatLabel="always">
+        <mat-label>Surname</mat-label>
+  
+        <input formcInputuppercase matInput formControlName="surname" placeholder="Surname" maxlength="50">
+      </mat-form-field>
+      <mat-form-field floatLabel="always">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender" placeholder="Gender">
+          <mat-option value="F">Female</mat-option>
+          <mat-option value="M">Male</mat-option>
+          <mat-option value="X">Transgender</mat-option>
+        </mat-select>
+        <mat-error *ngIf="personalDetailsForm.get('gender').hasError('required')">Required</mat-error>
+      </mat-form-field> -->
+
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label class="asterix--before">Dob Format </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select formControlName="dobformat" >
+            <mat-option value="DD">DD/MM/YYYY</mat-option>
+            <mat-option value="MM">MM/YYYY</mat-option>
+            <mat-option value="YY">YYYY</mat-option>
+            <mat-option value="XX">Age in years</mat-option>
+          </mat-select>
+          <mat-error *ngIf="personalDetailsForm.get('dobformat').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3" *ngIf="personalDetailsForm.value.dobformat">
+        <mat-label *ngIf=showDDfield class="asterix--before">DOB </mat-label>
+        <mat-form-field formcDateFormat floatLabel="always" appearance="outline" class="full-width" *ngIf=showDDfield>
+
+          <input formcInputuppercase matInput (dateChange)="setdateChanged()" readonly [matDatepicker]="dp" formControlName="dob" [min]="minDate" [max]="maxDate">
+          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker #dp ></mat-datepicker>
+          <mat-error *ngIf="personalDetailsForm.get('dob').hasError('required')">Required</mat-error>
+        </mat-form-field>
+        <mat-label *ngIf=showMMfield class="asterix--before">DOB </mat-label>
+        <mat-form-field formcYearMonthFormat floatLabel="always" appearance="outline" class="full-width"
+          *ngIf=showMMfield>
+
+          <input formcInputuppercase matInput readonly [matDatepicker]="dp1" formControlName="dob" [max]="maxDate">
+          <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+          <mat-datepicker #dp1 startView="multi-year" (monthSelected)="setMonthAndYear($event, dp1)">
+          </mat-datepicker>
+          <mat-error *ngIf="personalDetailsForm.get('dob').hasError('required')">Required</mat-error>
+        </mat-form-field>
+        <mat-label *ngIf=showYYfield class="asterix--before">DOB </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width" formcYearFormat *ngIf=showYYfield>
+
+          <input formcInputuppercase  readonly formControlName="dob" matInput [matDatepicker]="dp2" [max]="maxDate"/>
+          <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+          <mat-datepicker #dp2 startView="multi-year" (yearSelected)="chosenYearHandler($event, dp2)">
+          </mat-datepicker>
+          <mat-error *ngIf="personalDetailsForm.get('dob').hasError('required')">Required</mat-error>
+        </mat-form-field>
+        <mat-label *ngIf=showXXfield class="asterix--before">DOB </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width" *ngIf=showXXfield>
+
+          <input  [(ngModel)]="ageInYrs" formcInputuppercase min="0" max="150" formControlName="dob" matInput  maxlength="3" />
+          <mat-error *ngIf="personalDetailsForm.get('dob').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="asterix--before">Address Outside India </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input formcInputuppercase matInput  formControlName="addroutind"  maxlength="150">
+          <mat-error *ngIf="personalDetailsForm.get('addroutind').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="personalDetailsForm.get('addroutind').hasError('pattern')">Only Alphabets,Numbers - / , # :
+            . () are allowed</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-label class="asterix--before">City Outside India </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <input formcInputuppercase matInput  formControlName="cityoutind"  maxlength="50">
+          <mat-error *ngIf="personalDetailsForm.get('cityoutind').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="personalDetailsForm.get('cityoutind').hasError('pattern')">Only Alphabets,Space And Dot
+            Allowed</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <mat-label class="asterix--before">Country Outside India </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select matInput formControlName="counoutind" >
+            <mat-option *ngFor="let country of countries" [value]="country.country_code">
+              {{ country.country_name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="personalDetailsForm.get('counoutind').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-md-3">
+        <mat-label class="asterix--before">Special Category </mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+
+          <mat-select  matInput formControlName="splcategorycode" >
+            <mat-option *ngFor="let splCategory of splCategories" [value]="splCategory.splCatCode">
+              {{ splCategory.splCatDesc }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="personalDetailsForm.get('splcategorycode').hasError('required')">Required</mat-error>
+        </mat-form-field>
+      </div> -->
+    </div>
+
+
+    <!-- <mat-form-field floatLabel="always" *ngIf=showDDfield>
+        <mat-label>Date of birth</mat-label>
+        <input formcInputuppercase matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" formControlName="dob" placeholder="DOB">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error startView="multi-year" *ngIf=showDDfield>Required</mat-error>
+      </mat-form-field> -->
+
+
+
+
+
+    <!-- <mat-form-field floatLabel="always">
+        <mat-label>Nationality</mat-label>
+        <mat-select formControlName="nationality" placeholder="Nationality">
+          <mat-option *ngFor="let country of countries" [value]="country.country_code">
+            {{ country.country_name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="personalDetailsForm.get('nationality').hasError('required')">Required</mat-error>
+      </mat-form-field> -->
+
+
+
+    <!-- <mat-form-field floatLabel="always">
+        <mat-label>Special Category</mat-label>
+        <mat-select matInput formControlName="splcategorycode" placeholder="Special Category">
+          <mat-option *ngFor="let splCategory of splCategories" [value]="splCategory.splCatCode">
+            {{ splCategory.splCatDesc }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="personalDetailsForm.get('splcategorycode').hasError('required')">Required</mat-error>
+      </mat-form-field> -->
+    <div fxLayout="row" class="prevNxtbtn" fxLayoutGap="20px">
+      <div>
+        <button mat-raised-button color="primary" matStepperPrevious>Prev</button>
+      </div>
+      <div> <button type="submit" mat-raised-button color="primary"  [class.spinner]="loading" [disabled]="loading" (click)="postPersonalData()" >Next</button>
+      </div>
+    </div>
+  </form>
+</div>

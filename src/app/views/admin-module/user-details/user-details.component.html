@@ -1,0 +1,198 @@
+<div class="table-responsive">
+  <div class="d-flex">
+    <div
+      style="color: rgba(0, 51, 121, 0.796)"
+      class="text-center font-weight-bold ext-primary w-100"
+    >
+      <h2>User Information</h2>
+    </div>
+    <div class="flex-shrink-1 p-2"></div>
+    <div class="flex-shrink-1 p-3">
+      <button type="button" class="btn btn-danger" (click)="dialogClose()">
+        X
+      </button>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table
+      class="table table-striped table-bordered border-primary align-middle"
+    >
+      <tbody>
+        <tr>
+          <th class="text-nowrap">User ID</th>
+          <td class="h6 text-bold text-success">
+            {{ this.userId }}
+          </td>
+          <th class="text-nowrap">Name</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["user_name"] }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">Date of Birth</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["dob"] }}
+          </td>
+          <th class="text-nowrap">Designation</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["designation"] }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">Email Id</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["e_mail_id"] }}
+          </td>
+          <th class="text-nowrap">Mobile Number</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["mobile_no"] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    style="color: rgba(0, 51, 121, 0.796)"
+    class="text-center font-weight-bold ext-primary w-100"
+  >
+    <h2>
+      Hotel / Guest House / Dharamshala / Institute / Individual House / etc
+    </h2>
+  </div>
+  <div class="table-responsive">
+    <table
+      class="table table-striped table-bordered border-primary align-middle"
+    >
+      <tbody>
+        <tr>
+          <th class="text-nowrap">Name</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["accomName"] }}
+          </td>
+          <th class="text-nowrap">Capacity</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["accomCapacity"] }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">State</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["accomStateDesc"] }}
+          </td>
+          <th class="text-nowrap">City</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["accomCityDesc"] }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">FRRO</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["frroDesc"] }}
+          </td>
+          <th class="text-nowrap">Accomodation Type</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["accoTypeDesc"] }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">Email Id</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["accomEmail"] }}
+          </td>
+          <th class="text-nowrap">Accomodation Grade</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["accoGradeDesc"] }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">Mobile</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["accomMobile"] }}
+          </td>
+          <th class="text-nowrap">Phone</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["accomPhoneNum"] }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-nowrap">Address</th>
+          <td class="h6 text-bold tdc">
+            {{ this.accommodatorDetails["accomAddress"] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    style="color: rgba(0, 51, 121, 0.796)"
+    class="text-center font-weight-bold ext-primary w-100"
+  >
+    <h2>
+      Hotel / Guest House / Dharamshala / Institute / Individual House Owner
+      Details
+    </h2>
+  </div>
+  <div class="row" style="padding: 2%">
+    <div class="col-md-11">
+      <table
+        class="mat-elevation-z8"
+        mat-table
+        [dataSource]="ownerDetailsSource"
+      >
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+        <!--
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef>Address</th>
+          <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef>State</th>
+          <td mat-cell *matCellDef="let element">{{ element.stateDesc }}</td>
+        </ng-container>
+        <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef>City</th>
+          <td mat-cell *matCellDef="let element">{{ element.cityDesc }}</td>
+        </ng-container>
+        <ng-container matColumnDef="emailId">
+          <th mat-header-cell *matHeaderCellDef>Email Id</th>
+          <td mat-cell *matCellDef="let element">{{ element.emailId }}</td>
+        </ng-container>
+        <ng-container matColumnDef="phnNum">
+          <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+          <td mat-cell *matCellDef="let element">{{ element.phoneNum }}</td>
+        </ng-container>
+        <ng-container matColumnDef="mblNum">
+          <th mat-header-cell *matHeaderCellDef>Mobile Number</th>
+          <td mat-cell *matCellDef="let element">{{ element.mobile }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumn"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td style="text-align: center; font-size: larger" colspan="4">
+            NO RECORDS FOUND!
+          </td>
+        </tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="5">No data</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div align="center">
+    <button
+      type="submit"
+      (click)="approveUser()"
+      mat-raised-button
+      color="primary"
+    >
+      Approve User
+    </button>
+  </div>
+</div>
+<!-- (click)="submitFunc()" -->

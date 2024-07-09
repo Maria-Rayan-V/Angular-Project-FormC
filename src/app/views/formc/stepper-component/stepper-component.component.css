@@ -1,0 +1,25 @@
+.mat-stepper-horizontal {
+  margin-top: 0%;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+}
+/* .formc-stepper{
+   
+    border: 0px solid rgb(17, 64, 113);;
+  }
+mat-stepper{
+  border: 0px solid rgb(17, 64, 113);
+  
+} */
+
+  p{
+   font-weight: bold;
+    font-size: larger;
+    padding-top: 10px;
+    padding-right: 10px;
+  }

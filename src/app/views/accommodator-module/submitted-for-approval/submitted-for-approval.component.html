@@ -1,0 +1,122 @@
+<br>
+    <h1 style="text-align: center;">Submit For Approval</h1>
+    <div style="text-align: center;" >
+      <br>
+      <div class="container" *ngIf="accommodatorDetails!=null">
+        <div class="line">
+          <mat-divider></mat-divider>
+        </div>
+        <div class="text mat-typography" style="font-size: 20px;font-weight: bold;">Accommodator Details</div>
+        <div class="line">
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+<table class="table" *ngIf="accommodatorDetails!=null">  
+     
+     <tr>  
+        <th> Accommodator Name </th>  
+        <td> {{accommodatorDetails[
+            'accomName'
+          ]}} </td>  
+          <th> Capacity </th>  
+          <td> {{accommodatorDetails[
+              'accomCapacity'
+            ]}} </td>  
+    </tr>   
+    <tr>  
+        <th> Address </th>  
+        <td> {{accommodatorDetails[
+            'accomAddress'
+          ]}} </td>  
+          <th> State </th>  
+        <td> {{accommodatorDetails[
+            'accomStateDesc'
+          ]}} </td>  
+    </tr>  
+    <tr>  
+      <th> District </th>  
+      <td> {{accommodatorDetails[
+          'accomCityDesc'
+        ]}} </td>  
+        <th> Frro/Fro </th>  
+      <td> {{accommodatorDetails[
+          'frroDesc'
+        ]}} </td>  
+  </tr>  
+  <tr>  
+    <th> Accommodation Type </th>  
+    <td> {{accommodatorDetails[
+        'accoTypeDesc'
+      ]}} </td>  
+      <th> Accommodation Grade</th>  
+    <td> {{accommodatorDetails[
+        'accoGradeDesc'
+      ]}} </td>  
+</tr>  
+<tr>  
+  <th>Email</th>  
+  <td> {{accommodatorDetails[
+      'accomEmail'
+    ]}} </td>  
+    <th> Mobile Number</th>  
+  <td> {{accommodatorDetails[
+      'accomMobile'
+    ]}} </td>  
+   
+</tr>
+<tr> <th> Phone Number</th>  
+  <td> {{accommodatorDetails[
+      'accomPhoneNum'
+    ]}} </td>  </tr>  
+</table>    <div class="container" *ngIf="ownerDetails!=null">
+  <div class="line">
+    <mat-divider></mat-divider>
+  </div>
+  <div class="text mat-typography"  style="font-size: 20px;font-weight: bold;">Owner Details</div>
+  <div class="line">
+    <mat-divider></mat-divider>
+  </div>
+</div>
+
+<table  mat-table  [dataSource]="ownerDetails" *ngIf="ownerDetails!=null">
+   
+   
+  <!--Application Id-->
+  <ng-container matColumnDef="name">
+   <th mat-header-cell *matHeaderCellDef>  Name </th>
+   <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+ </ng-container>  
+ <ng-container matColumnDef="address">
+  <th mat-header-cell *matHeaderCellDef>  Address </th>
+  <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+</ng-container>  
+<ng-container matColumnDef="state">
+  <th mat-header-cell *matHeaderCellDef>  State </th>
+  <td mat-cell *matCellDef="let element"> {{element.stateDesc}} </td>
+</ng-container>  
+<ng-container matColumnDef="cityDist">
+  <th mat-header-cell *matHeaderCellDef>  District </th>
+  <td mat-cell *matCellDef="let element"> {{element.cityDesc}} </td>
+</ng-container>  
+<ng-container matColumnDef="emailId">
+  <th mat-header-cell *matHeaderCellDef> Email </th>
+  <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
+</ng-container> 
+<ng-container matColumnDef="phoneNum">
+  <th mat-header-cell *matHeaderCellDef> Phone </th>
+  <td mat-cell *matCellDef="let element"> {{element.phoneNum}} </td>
+</ng-container> 
+<ng-container matColumnDef="mobile">
+  <th mat-header-cell *matHeaderCellDef> Mobile </th>
+  <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+</ng-container> 
+ <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+ <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+ </table>
+<br>
+<br>
+ <div align="center"> <button type="submit" mat-raised-button color="primary"   (click)="submitApplCnfrm()" >Submit For Approval</button>
+
+ </div>
+</div>
+

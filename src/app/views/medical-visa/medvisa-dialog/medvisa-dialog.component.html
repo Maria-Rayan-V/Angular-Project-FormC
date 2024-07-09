@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Medical Visa Invitation Extension</h1>
+<div mat-dialog-content [formGroup]="existingDataSearch">
+  <mat-label>File Reference Number </mat-label>
+  <mat-form-field class="full-width" floatLabel="always" appearance="outline">
+    <input matInput formControlName="fileRefno" maxlength="20" />
+    <!-- <mat-error *ngIf="existingDataSearch.get('fileRefno').hasError('required')">Required</mat-error> -->
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogClose()">Cancel</button>
+  <button mat-button (click)="save()" cdkFocusInitial>Fetch Data</button>
+</div>

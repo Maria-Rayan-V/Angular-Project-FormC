@@ -1,0 +1,77 @@
+
+<mat-toolbar class="title-toolbar"> 
+    <mat-toolbar-row> 
+      <span class="title-center">User Registration for Form 'C' and Form 'S'</span> 
+     
+      <mat-icon matTooltip="Back to login" class="example-icon" (click)="navigateToSignin()"
+                aria-hidden="false" 
+                aria-label="Tutorials"> keyboard_arrow_left
+      </mat-icon> 
+    </mat-toolbar-row> 
+  </mat-toolbar> 
+<div [class.alternative]="true"></div>
+
+
+  <!-- <div title>Signup </div> -->
+  <!-- <button mat-raised-button color="primary" (click)="logout()">Logout</button> -->
+
+
+
+
+<div class="container menu">
+  <div class="row">
+    <div class="col-md-4 " routerLink="/sessions/userregn">
+      <a>
+
+        <mat-icon style="color:darkblue">account_box</mat-icon><br>
+
+      <p mat-card-title>Sign Up (Registration)</p></a>
+    </div>
+    <div class="col-md-4 " routerLink="/sessions/SignupMenu/IHRegn">
+      <a>
+        <mat-icon style="color:rgb(235, 123, 31)">home</mat-icon><br>
+
+        <p mat-card-title>Sign Up (Registration) For Individual House</p>
+      </a>
+    </div>
+    <div class="col-md-4 " routerLink="/sessions/SignupMenu/IHRegn">
+      <a>
+        <mat-icon style='font-size:36px;color:teal'>vpn_key</mat-icon><br>
+
+
+      <p mat-card-title>User Activation For Individual House</p></a>
+    </div>
+
+  
+
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-4" routerLink="/sessions/SignupMenu/RegnForm">
+        <a>
+            <mat-icon style='font-size:36px;color:blueviolet'>local_printshop</mat-icon><br>
+    
+    
+          <p mat-card-title> Reprint User Registration Form</p></a>
+    </div>
+    <div class="col-md-4" routerLink="/sessions/SignupMenu/RegnForm">
+        <a>
+            <mat-icon style='font-size:36px;color:tomato'>edit</mat-icon><br>
+    
+    
+          <p mat-card-title> Edit User Registration Form</p></a>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+<br><br>
+<div class="container" style="margin-left: 3%;">
+<h1>Instructions</h1>
+<p>1. Use <b> Sign Up (Registration)</b> Option to fill User Registration Form for FORM C and Print.</p>
+<p>2. Use <b> Reprint User Registration Form </b>Option to Reprint the User Registration Form for FORM C .</p>
+<p>3. User Cannot Reprint the User Registration Form for FORM C,If User is already Approved.</p>
+<p>4. Use <b> Edit User Registration Form</b> Option for Correction of User Registration Form before the Approval of FRRO/FRO.</p>
+
+
+</div>

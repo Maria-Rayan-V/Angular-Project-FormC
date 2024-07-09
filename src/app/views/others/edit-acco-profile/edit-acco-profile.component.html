@@ -1,0 +1,505 @@
+<form [formGroup]="editAccoForm">
+  <div class="container">
+    <div class="line">
+      <mat-divider></mat-divider>
+    </div>
+    <div class="text mat-typography">Accomodator Details</div>
+
+    <div class="line">
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-3">
+      <mat-label class="asterix--before">Name</mat-label>
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <input
+          matInput
+          formcInputuppercase
+          formControlName="user_name"
+          placeholder="Phone"
+          maxlength="50"
+        />
+        <mat-error *ngIf="editAccoForm.get('user_name').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-label class="asterix--before">Gender</mat-label>
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <mat-select formControlName="gender" placeholder="Gender">
+          <mat-option value="F">Female</mat-option>
+          <mat-option value="M">Male</mat-option>
+          <mat-option value="X">Transgender</mat-option>
+        </mat-select>
+        <mat-error *ngIf="editAccoForm.get('gender').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-label class="asterix--before">Phone Number</mat-label>
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <input
+          readonly="true"
+          matInput
+          formcInputuppercase
+          formControlName="phoneNo"
+          placeholder="Phone"
+          maxlength="50"
+        />
+        <mat-error *ngIf="editAccoForm.get('phoneNo').hasError('required')"
+          >Required</mat-error
+        >
+        <mat-error *ngIf="editAccoForm.get('phoneNo').hasError('pattern')"
+          >Only numbers allowed
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- <div class="col-md-3">
+      <mat-label class="asterix--before">Date of birth</mat-label>
+      <mat-form-field floatLabel="always" class="full-width" appearance="outline" formcDateFormat>
+        <input [max]="maxDate" formcInputuppercase matInput formcInputuppercase [matDatepicker]="dob" formControlName="dob">
+        <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+        <mat-datepicker #dob></mat-datepicker>
+        <mat-error *ngIf="editAccoForm.get('dob').hasError('required')">Required</mat-error>
+      </mat-form-field>
+    </div> -->
+    <div class="col-md-3">
+      <mat-label class="asterix--before">Occupation</mat-label>
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <input
+          matInput
+          formcInputuppercase
+          formControlName="designation"
+          placeholder="Occupation"
+          maxlength="50"
+        />
+        <mat-error *ngIf="editAccoForm.get('designation').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-label class="asterix--before">Nationality</mat-label>
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <mat-select formControlName="nationality" placeholder="Nationality">
+          <mat-option
+            *ngFor="let country of countries"
+            [value]="country.country_code"
+          >
+            {{ country.country_name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="editAccoForm.get('nationality').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- <div class="row">
+
+      <div class="col-md-3">
+        <mat-label class="asterix--before">Phone Number</mat-label>
+        <mat-form-field floatLabel="always" appearance="outline" class="full-width">
+          <input matInput formcInputuppercase formControlName="phone_no" placeholder="Phone" maxlength="50">
+          <mat-error *ngIf="editAccoForm.get('phone_no').hasError('required')">Required</mat-error>
+          <mat-error *ngIf="editAccoForm.get('phone_no').hasError('pattern')">Only numbers allowed
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+  </div> -->
+  <br />
+  <div class="container">
+    <div class="line">
+      <mat-divider></mat-divider>
+    </div>
+    <div class="text mat-typography">Hotel Details</div>
+    <div class="line">
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col -md-3">
+      <mat-label class="asterix--before">Name</mat-label>
+      <mat-form-field
+        style="color: darkgray"
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <input
+          matInput
+          readonly
+          formcInputuppercase
+          formControlName="accomName"
+          placeholder="Hotel Name"
+          maxlength="150"
+        />
+        <mat-error *ngIf="editAccoForm.get('accomName').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-label class="asterix--before">Capacity (No.of rooms)</mat-label>
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <input
+          matInput
+          formcInputuppercase
+          formControlName="accomCapacity"
+          placeholder="capacity"
+          maxlength="150"
+        />
+        <mat-error
+          *ngIf="editAccoForm.get('accomCapacity').hasError('required')"
+          >Required</mat-error
+        >
+        <mat-error *ngIf="editAccoForm.get('accomCapacity').hasError('pattern')"
+          >Only numbers allowed
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-label class="asterix--before">Address</mat-label>
+      <mat-form-field
+        style="color: darkgray"
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <input
+          readonly
+          matInput
+          formcInputuppercase
+          formControlName="accomAddress"
+          placeholder="Address"
+          maxlength="150"
+        />
+        <mat-error *ngIf="editAccoForm.get('accomAddress').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-label class="asterix--before">State </mat-label>
+      <mat-form-field
+        class="readonly-wrapper"
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <mat-select
+          [disabled]="true"
+          class="readonly-block"
+          matInput
+          formcInputuppercase
+          placeholder="State"
+          formControlName="accomState"
+          (selectionChange)="onChangeState($event.value)"
+        >
+          <mat-option *ngFor="let state of states" [value]="state.stateCode">
+            {{ state.ststeName }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="editAccoForm.get('accomState').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <mat-label class="asterix--before">City</mat-label>
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <mat-select
+          [disabled]="true"
+          matInput
+          formcInputuppercase
+          placeholder="City"
+          (selectionChange)="onChangedCity()"
+          formControlName="accomCityDist"
+          #select_nationality
+        >
+          <mat-option
+            *ngFor="let city of districts"
+            [value]="city.districtCode"
+          >
+            {{ city.districtName }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="editAccoForm.get('accomCityDist').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-label class="asterix--before">FRRO/FRO Description</mat-label>
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <mat-select
+          [disabled]="true"
+          matInput
+          formcInputuppercase
+          placeholder="Fro/Frro Description"
+          formControlName="frroTypeCode"
+        >
+          <mat-option
+            *ngFor="let frro of frroList"
+            [value]="frro.frro_fro_code"
+          >
+            {{ frro.frro_fro_desc }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="editAccoForm.get('frroTypeCode').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-label class="asterix--before">Accomodation Type</mat-label>
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <mat-select
+          [disabled]="true"
+          matInput
+          formcInputuppercase
+          placeholder="Accomodation Type"
+          formControlName="accomodationType"
+          #select_nationality
+        >
+          <mat-option
+            *ngFor="let accotype of accoTypeList"
+            [value]="accotype.acc_type_code"
+          >
+            {{ accotype.acc_type_name }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="editAccoForm.get('accomodationType').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-label class="asterix--before">Accomodation Grade</mat-label>
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <mat-select
+          [disabled]="true"
+          matInput
+          formcInputuppercase
+          placeholder="Accomodation Grade"
+          formControlName="accomodationGrade"
+          #select_nationality
+        >
+          <mat-option
+            *ngFor="let accograde of accoGradeList"
+            [value]="accograde.acco_grade"
+          >
+            {{ accograde.acco_grade_desc }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="editAccoForm.get('accomodationGrade').hasError('required')"
+          >Required</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <mat-label class="asterix--before">Email Id</mat-label>
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <input
+          matInput
+          formControlName="accomEmail"
+          placeholder="Email Id"
+          maxlength="50"
+        />
+        <mat-error *ngIf="editAccoForm.get('accomEmail').hasError('required')"
+          >Required</mat-error
+        >
+        <mat-error *ngIf="editAccoForm.get('accomEmail').hasError('pattern')"
+          >Enter Valid email id</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-label class="asterix--before">Hotel Mobile Number</mat-label>
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <input
+          matInput
+          formcInputuppercase
+          formControlName="accomMobile"
+          placeholder="Mobile"
+          maxlength="50"
+        />
+        <mat-error *ngIf="editAccoForm.get('accomMobile').hasError('required')"
+          >Required</mat-error
+        >
+        <mat-error *ngIf="editAccoForm.get('accomMobile').hasError('pattern')"
+          >Only numbers allowed
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-label class="asterix--before">Hotel Phone Number</mat-label>
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="full-width"
+      >
+        <input
+          matInput
+          formcInputuppercase
+          formControlName="accomPhoneNum"
+          placeholder="Phone"
+          maxlength="50"
+        />
+        <mat-error
+          *ngIf="editAccoForm.get('accomPhoneNum').hasError('required')"
+          >Required</mat-error
+        >
+        <mat-error *ngIf="editAccoForm.get('accomPhoneNum').hasError('pattern')"
+          >Only numbers allowed
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <br />
+  <div class="container">
+    <div class="line">
+      <mat-divider></mat-divider>
+    </div>
+    <div class="text mat-typography">Owner Details</div>
+    <div class="line">
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+  <br />
+  <div class="row" style="padding: 2%">
+    <div class="col-md-11">
+      <table
+        class="mat-elevation-z8"
+        mat-table
+        [dataSource]="ownerDetailsSource"
+      >
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef>Address</th>
+          <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef>State</th>
+          <td mat-cell *matCellDef="let element">{{ element.stateDesc }}</td>
+        </ng-container>
+        <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef>City</th>
+          <td mat-cell *matCellDef="let element">{{ element.cityDesc }}</td>
+        </ng-container>
+        <ng-container matColumnDef="emailId">
+          <th mat-header-cell *matHeaderCellDef>Email Id</th>
+          <td mat-cell *matCellDef="let element">{{ element.emailId }}</td>
+        </ng-container>
+        <ng-container matColumnDef="phnNum">
+          <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+          <td mat-cell *matCellDef="let element">{{ element.phoneNum }}</td>
+        </ng-container>
+        <ng-container matColumnDef="mblNum">
+          <th mat-header-cell *matHeaderCellDef>Mobile Number</th>
+          <td mat-cell *matCellDef="let element">{{ element.mobile }}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon (click)="OpenDialog('Delete', element)">delete</mat-icon>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumn"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td style="text-align: center; font-size: larger" colspan="4">
+            NO RECORDS FOUND!
+          </td>
+        </tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="5">No data</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-1">
+      <button color="primary" mat-raised-button (click)="OpenDialog('Add', {})">
+        Add Owner
+      </button>
+    </div>
+  </div>
+
+  <br />
+  <div align="center">
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      (click)="submitFunc()"
+    >
+      Update Profile
+    </button>
+  </div>
+</form>
